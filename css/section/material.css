@@ -1,0 +1,1491 @@
+/* 01. 머터리얼 공통 */
+body {
+  margin: 0;
+  background: linear-gradient(90deg, #0e0d0e 0%, #1a1a1a 35%, #242424 65%, #0e0d0e 100%);
+}
+
+.lab_page,
+.lab_page * {
+  box-sizing: border-box;
+}
+
+.lab_page {
+  color: #fff;
+  font-family: "SUIT", sans-serif;
+  overflow: clip;
+}
+
+.lab_page p {
+  font-weight: 300;
+}
+
+.lab_page h1,
+.lab_page h2,
+.lab_page h3,
+.lab_page p,
+.lab_page figure {
+  margin: 0;
+}
+
+.lab_page img,
+.lab_page video {
+  display: block;
+}
+
+.lab_en {
+  font-family: "Roboto Mono", monospace;
+}
+
+.lab_inner {
+  max-width: 77.5vw;
+  margin: 0 auto;
+}
+
+/* 02. 영상 */
+.lab_hero {
+  position: relative;
+  height: 57.45vw;
+}
+
+.lab_hero video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 영상 소리 버튼 */
+.lab_sound {
+  position: absolute;
+  right: 2.55%;
+  bottom: 4.44%;
+  z-index: 5;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.35);
+  color: #fff;
+  cursor: pointer;
+}
+
+.lab_sound svg {
+  width: 22px;
+  height: 22px;
+}
+
+.lab_sound_on,
+.lab_sound[aria-pressed="true"] .lab_sound_off {
+  display: none;
+}
+
+.lab_sound[aria-pressed="true"] .lab_sound_on {
+  display: block;
+}
+
+.lab_sound:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.lab_sound:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 0.1562vw;
+}
+
+/* 03. 소재 소개 */
+.lab_intro {
+  padding-top: 2.4479vw;
+}
+
+.lab_intro h1 {
+  font-size: 1.0417vw;
+  line-height: 1.4583vw;
+}
+
+.lab_intro > .lab_en {
+  font-size: 0.9375vw;
+  line-height: 1.25vw;
+}
+
+.lab_page .lab_intro_desc {
+  max-width: 54.6875vw;
+  margin-top: 1.3542vw;
+  font-size: 0.9375vw;
+  line-height: 1.4583vw;
+  word-break: keep-all;
+}
+
+/* 04. 실험 공간 */
+.lab_gallery {
+  margin-top: 14.8958vw;
+}
+
+.lab_gallery h2,
+.lab_process h2 {
+  padding-top: 1.5625vw;
+  font-size: 0.8333vw;
+}
+
+.lab_gallery > p {
+  margin-top: 1.5625vw;
+  font-size: 0.8333vw;
+}
+
+.lab_gallery_list {
+  display: flex;
+  gap: 12%;
+  max-width: 60vw;
+  margin: 6.8229vw auto 0;
+}
+
+.lab_gallery_item {
+  flex: 1;
+  min-width: 0;
+}
+
+.lab_gallery_item img {
+  width: 100%;
+  height: 32vw;
+  object-fit: cover;
+  object-position: center;
+}
+
+.lab_gallery_item figcaption {
+  margin-top: 0.4688vw;
+  font-size: 0.7292vw;
+}
+
+/* 05. 의류 염색 기술 */
+.lab_process {
+  height: calc(100vh + 5000px);
+  margin-top: 19.4792vw;
+}
+
+/* 스크롤 화면 고정 */
+.lab_pin {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  isolation: isolate;
+}
+
+.lab_process h2 {
+  margin-bottom: 7.5521vw;
+}
+
+.lab_stage {
+  position: relative;
+  height: 26.6146vw;
+  top: -5vw;
+}
+
+/* 06. 비커 */
+.lab_beaker {
+  position: relative;
+  width: 100%;
+  max-width: 23.6458vw;
+  margin: 0 auto;
+}
+
+.lab_beaker img {
+  position: relative;
+  width: 100%;
+}
+
+/* 비커 내부 영역 */
+.lab_liquid {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+
+  clip-path: polygon(
+    34% 8%,
+    66% 8%,
+    66% 38%,
+    74% 55%,
+    85% 77%,
+    88% 90%,
+    12% 90%,
+    15% 77%,
+    26% 55%,
+    34% 38%
+  );
+}
+
+/* 비커 물 높이 */
+.lab_water {
+  position: absolute;
+  left: -5%;
+  bottom: -2%;
+  width: 110%;
+  height: 0;
+
+  background: #b4d900;
+  opacity: 0.88;
+  transition: background-color 0.4s;
+}
+
+/* 07. 염색 과정 설명 */
+.lab_step {
+  position: absolute;
+  width: 25%;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.lab_step.is-active {
+  opacity: 1;
+}
+
+.lab_step h3,
+.lab_step p {
+  font-size: 0.8333vw;
+}
+
+.lab_step h3 {
+  position: relative;
+  display: inline-block;
+  line-height: 1.1979vw;
+}
+
+.lab_step p {
+  margin-top: 0.9375vw;
+  line-height: 1.3021vw;
+  word-break: keep-all;
+}
+
+/* 왼쪽 위 설명 */
+.lab_step04 {
+  left: 7%;
+  top: 18%;
+  --line: 16.5vw;
+}
+
+/* 왼쪽 아래 설명 */
+.lab_step02 {
+  left: 7%;
+  top: 56%;
+  --line: 17vw;
+}
+
+/* 오른쪽 아래 설명 */
+.lab_step01 {
+  right: 5%;
+  top: 70%;
+  --line: 8vw;
+}
+
+/* 오른쪽 위 설명 */
+.lab_step03 {
+  right: 7%;
+  top: 35%;
+  --line: 9.5vw;
+}
+
+/* 설명 연결선과 동그라미 */
+.lab_step h3::before,
+.lab_step h3::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+}
+
+.lab_step h3::before {
+  width: var(--line);
+  height: 1px;
+  background-image: repeating-linear-gradient(to right, #aaa 0 4px, transparent 4px 9px);
+}
+
+.lab_step h3::after {
+  width: 0.3646vw;
+  height: 0.3646vw;
+  border-radius: 50%;
+  background: #fff;
+}
+
+/* 왼쪽 설명 연결선 */
+.lab_step02 h3::before,
+.lab_step04 h3::before {
+  left: calc(100% + 0.625vw);
+}
+
+.lab_step02 h3::after,
+.lab_step04 h3::after {
+  left: calc(100% + 0.625vw + var(--line));
+  transform: translate(-50%, -50%);
+}
+
+/* 오른쪽 설명 연결선 */
+.lab_step01 h3::before,
+.lab_step03 h3::before {
+  right: calc(100% + 0.625vw);
+}
+
+.lab_step01 h3::after,
+.lab_step03 h3::after {
+  right: calc(100% + 0.625vw + var(--line));
+  transform: translate(50%, -50%);
+}
+
+/* 데스크톱 진행 바 숨김 */
+.lab_progress,
+.lab_pattern_progress {
+  display: none;
+}
+
+/* 염색 장면 */
+.lab_dye_scene {
+  position: relative;
+  width: 100%;
+  z-index: 2;
+}
+
+/* 패턴과 완성 장면 */
+.lab_pattern_scene,
+.lab_complete_scene {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 100vw;
+  height: 100%;
+  transform: translateX(-50%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.lab_pattern_scene {
+  z-index: 3;
+}
+
+.lab_complete_scene {
+  z-index: 4;
+}
+
+.lab_pattern_inner,
+.lab_complete_inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.lab_pattern_inner {
+  perspective: 62.5vw;
+}
+
+/* 08. 패턴 이미지 */
+.lab_part {
+  position: absolute;
+  object-fit: contain;
+  max-width: none;
+  opacity: 0;
+}
+
+/* 카무플라주 패턴 */
+.lab_part_camo {
+  left: 31.25vw;
+  top: 8.4375vw;
+  width: 14.8438vw;
+  height: auto;
+  --photo-delay: 0s;
+}
+
+/* 퀼팅 패턴 */
+.lab_part_quilting {
+  left: 51.3021vw;
+  top: 3.9062vw;
+  width: auto;
+  height: 21.3542vw;
+  --photo-delay: 0.22s;
+}
+
+/* 인체공학적 패턴 */
+.lab_part_ergonomic {
+  left: 25vw;
+  top: 21vw;
+  width: auto;
+  height: 19vw;
+  --photo-delay: 0.44s;
+}
+
+/* 헤링본 패턴 */
+.lab_part_herringbone {
+  left: 50%;
+  top: 24.375vw;
+  width: 15vw;
+  height: 13.59vw;
+  --photo-delay: 0.66s;
+}
+
+/* 09. 패턴 설명 */
+.lab_pattern_notes {
+  position: absolute;
+  inset: 0;
+}
+
+.lab_pattern_note {
+  position: absolute;
+  opacity: 0;
+}
+
+.lab_pattern_note h3,
+.lab_pattern_note p {
+  font-size: 0.8333vw;
+}
+
+.lab_pattern_note h3 {
+  margin-bottom: 0.8333vw;
+  line-height: 1.4;
+}
+
+.lab_pattern_note p {
+  line-height: 1.5;
+  word-break: keep-all;
+}
+
+/* 카무플라주 설명 */
+.lab_note_camo {
+  left: 16.93%;
+  top: 7.5521vw;
+  width: 12.5vw;
+  --note-delay: 1.4s;
+}
+
+/* 퀼팅 설명 */
+.lab_note_quilting {
+  left: 65.1042vw;
+  top: 9.8958vw;
+  width: 19.0104vw;
+  --note-delay: 1.65s;
+}
+
+/* 인체공학적 패턴 설명 */
+.lab_note_ergonomic {
+  left: 11.33%;
+  top: 24.7167vw;
+  width: 14.3229vw;
+  --note-delay: 1.9s;
+}
+
+/* 헤링본 설명 */
+.lab_note_herringbone {
+  left: 68.5%;
+  top: 28.63vw;
+  width: 20.3125vw;
+  --note-delay: 2.15s;
+}
+
+/* 10. 패턴 설명 연결선 */
+.lab_pattern_note::before,
+.lab_pattern_note::after {
+  content: "";
+  position: absolute;
+  opacity: 0;
+}
+
+.lab_pattern_note::before {
+  border-top: 2px dashed rgba(255, 255, 255, 0.75);
+}
+
+.lab_pattern_note::after {
+  width: 1.7vw;
+  height: 1.7vw;
+  border: 1px solid rgba(255, 255, 255);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  box-sizing: border-box;
+}
+
+/* 카무플라주 연결선과 동그라미 */
+.lab_note_camo::before {
+  left: 7.3958vw;
+  top: 0.4167vw;
+  width: 9.7917vw;
+  height: 5.8854vw;
+  border-right: 2px dashed rgba(255, 255, 255, 0.75);
+}
+
+.lab_note_camo::after {
+  left: 16.45vw;
+  top: 6.3021vw;
+}
+
+/* 퀼팅 연결선과 동그라미 */
+.lab_note_quilting::before {
+  left: -1.9458vw;
+  top: calc(0.5896vw - 1px);
+  width: 0.9458vw;
+}
+
+.lab_note_quilting::after {
+  left: -3.6458vw;
+  top: -0.2604vw;
+}
+
+/* 인체공학적 패턴 연결선과 동그라미 */
+.lab_note_ergonomic::before {
+  left: 6.8vw;
+  top: 0.5833vw;
+  width: 10.2958vw;
+}
+
+.lab_note_ergonomic::after {
+  left: 17.0958vw;
+  top: -0.0417vw;
+}
+
+/* 헤링본 연결선과 동그라미 */
+.lab_note_herringbone::before {
+  right: calc(100% + 1vw);
+  top: calc(0.7458vw - 1px);
+  width: 3.8104vw;
+}
+
+.lab_note_herringbone::after {
+  left: -6.5104vw;
+  top: -0.1042vw;
+}
+
+/* 패턴 하단 제목 */
+.lab_pattern_label {
+  position: absolute;
+  left: 50%;
+  bottom: 5.6771vw;
+  transform: translateX(-50%);
+  font:
+    0.7812vw "Roboto Mono",
+    monospace;
+  white-space: nowrap;
+}
+
+/* 11. 완성된 옷 */
+.lab_complete_coat {
+  position: absolute;
+  left: 26.7188vw;
+  top: 11.3542vw;
+  width: 22.4479vw;
+  height: 28.0208vw;
+  object-fit: contain;
+  transform: scale(var(--coat-scale, 1));
+}
+
+/* 완성된 옷 설명 */
+.lab_complete_copy {
+  position: absolute;
+  left: 51.8229vw;
+  top: 23.6979vw;
+  opacity: 0;
+}
+
+.lab_complete_copy h3,
+.lab_complete_copy p {
+  white-space: nowrap;
+}
+
+.lab_complete_copy h3 {
+  margin-bottom: 0.4167vw;
+  font-family: "Roboto Mono", monospace;
+  font-size: 1.25vw;
+  font-weight: 700;
+}
+
+.lab_complete_copy p {
+  margin-left: 2.6042vw;
+  font-family: "SUIT", sans-serif;
+  font-size: 1.0417vw;
+  font-weight: 300;
+}
+
+/* 12. 패턴 등장 애니메이션 */
+.lab_pattern_scene.is-playing .lab_part {
+  animation: labPhotoIn 0.75s ease-out both;
+  animation-delay: var(--photo-delay);
+}
+
+.lab_pattern_scene.is-playing .lab_pattern_note {
+  animation: labNoteIn 0.5s ease-out both;
+  animation-delay: var(--note-delay);
+}
+
+.lab_pattern_scene.is-playing .lab_pattern_note::before,
+.lab_pattern_scene.is-playing .lab_pattern_note::after {
+  animation: labLineIn 0.4s ease-out both;
+  animation-delay: calc(var(--note-delay) + 0.35s);
+}
+
+/* 이미지 등장 */
+@keyframes labPhotoIn {
+  from {
+    opacity: 0;
+    translate: 0 1.5625vw;
+  }
+
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+/* 설명 등장 */
+@keyframes labNoteIn {
+  from {
+    opacity: 0;
+    translate: 0 0.625vw;
+  }
+
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+/* 연결선 등장 */
+@keyframes labLineIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* 1024px 반응형 */
+@media (max-width: 1024px) {
+  /* 공통 */
+  .lab_inner {
+    max-width: 100%;
+  }
+
+  .lab_content {
+    padding: 0 5.5%;
+  }
+
+  /* 영상 */
+  .lab_hero {
+    height: 63.48vw;
+  }
+
+  /* 소재 소개 */
+  .lab_intro {
+    padding-top: 4.1016vw;
+  }
+
+  .lab_intro h1 {
+    font-size: 1.9531vw;
+    line-height: 2.7344vw;
+  }
+
+  .lab_intro > .lab_en {
+    font-size: 1.7578vw;
+    line-height: 2.3438vw;
+  }
+
+  .lab_page .lab_intro_desc {
+    max-width: 72.2656vw;
+    margin-top: 2.5391vw;
+    font-size: 1.3672vw;
+    line-height: 2.0508vw;
+  }
+
+  /* 실험 공간 */
+  .lab_gallery {
+    margin-top: 35.3516vw;
+  }
+
+  .lab_gallery h2,
+  .lab_process h2 {
+    padding-top: 2.9297vw;
+    font-size: 1.5625vw;
+  }
+
+  .lab_gallery > p {
+    margin-top: 2.9297vw;
+    font-size: 1.5625vw;
+  }
+
+  .lab_gallery_list {
+    gap: 15.15%;
+    max-width: none;
+    margin-top: 11.6211vw;
+  }
+
+  .lab_gallery_item img {
+    height: 57.42vw;
+  }
+
+  .lab_gallery_item figcaption {
+    margin-top: 0.8789vw;
+    font-size: 1.1719vw;
+  }
+
+  /* 의류 염색 기술 */
+  .lab_process {
+    margin-top: 22.8516vw;
+    height: 2022px;
+  }
+
+  .lab_pin {
+    justify-content: flex-start;
+  }
+
+  .lab_process h2 {
+    position: relative;
+    top: 7.8125vw;
+    margin-bottom: 9.082vw;
+  }
+
+  .lab_stage {
+    height: 41.0156vw;
+    top: 0;
+  }
+
+  /* 비커 */
+  .lab_beaker {
+    width: 37%;
+    max-width: none;
+  }
+
+  /* 염색 설명 */
+  .lab_step h3,
+  .lab_step p {
+    font-size: 1.3672vw;
+  }
+
+  .lab_step h3 {
+    line-height: 1.9531vw;
+  }
+
+  .lab_step p {
+    margin-top: 1.3672vw;
+    line-height: 2.0508vw;
+  }
+
+  /* 왼쪽 위 설명 */
+  .lab_step04 {
+    left: 0;
+    top: 4.7852vw;
+    width: 37%;
+    --line: 18vw;
+  }
+
+  /* 왼쪽 아래 설명 */
+  .lab_step02 {
+    left: 0;
+    top: 21.9727vw;
+    width: 37%;
+    --line: 18.5vw;
+  }
+
+  /* 오른쪽 위 설명 */
+  .lab_step03 {
+    right: 0;
+    top: 13.0859vw;
+    width: 38%;
+    --line: 3.9062vw;
+  }
+
+  /* 오른쪽 아래 설명 */
+  .lab_step01 {
+    right: 0;
+    top: 30.2734vw;
+    width: 30%;
+    --line: 5.6641vw;
+  }
+
+  /* 연결선 동그라미 */
+  .lab_step h3::after {
+    width: 0.6836vw;
+    height: 0.6836vw;
+  }
+
+  /* 왼쪽 설명 연결선 */
+  .lab_step02 h3::before,
+  .lab_step04 h3::before {
+    left: calc(100% + 1.1719vw);
+  }
+
+  .lab_step02 h3::after,
+  .lab_step04 h3::after {
+    left: calc(100% + 1.1719vw + var(--line));
+  }
+
+  /* 오른쪽 설명 연결선 */
+  .lab_step01 h3::before,
+  .lab_step03 h3::before {
+    right: calc(100% + 1.1719vw);
+  }
+
+  .lab_step01 h3::after,
+  .lab_step03 h3::after {
+    right: calc(100% + 1.1719vw + var(--line));
+  }
+
+  /* 1024 점선 스타일 */
+  .lab_step h3::before {
+    height: 1px;
+    border-top: none;
+    background-image: repeating-linear-gradient(to right, #aaa 0 0.7vw, transparent 0.5vw 0.9vw);
+  }
+
+  /* 카무플라주 패턴 */
+  .lab_part_camo {
+    left: 35%;
+    top: 16vw;
+    width: 15.8%;
+  }
+
+  /* 퀼팅 패턴 */
+  .lab_part_quilting {
+    left: 57.6%;
+    top: 15vw;
+    height: 22vw;
+  }
+
+  /* 인체공학적 패턴 */
+  .lab_part_ergonomic {
+    left: 24%;
+    top: 33.2vw;
+    height: 20.6vw;
+  }
+
+  /* 헤링본 패턴 */
+  .lab_part_herringbone {
+    left: 46%;
+    top: 38.4vw;
+    width: 14.2%;
+    height: auto;
+  }
+
+  /* 패턴 설명 */
+  .lab_pattern_note h3,
+  .lab_pattern_note p {
+    font-size: 1.3672vw;
+  }
+
+  .lab_pattern_note h3 {
+    margin-bottom: 0.7812vw;
+  }
+
+  .lab_pattern_note p {
+    line-height: 1.45;
+  }
+
+  /* 카무플라주 설명 */
+  .lab_note_camo {
+    left: 9.2%;
+    top: 14.2vw;
+    width: 23%;
+  }
+
+  /* 퀼팅 설명 */
+  .lab_note_quilting {
+    left: 74.7%;
+    top: 22.2vw;
+    width: 19.7%;
+  }
+
+  /* 인체공학적 패턴 설명 */
+  .lab_note_ergonomic {
+    left: 6%;
+    top: 40vw;
+    width: 20%;
+  }
+
+  /* 헤링본 설명 */
+  .lab_note_herringbone {
+    left: 64.9%;
+    top: 44.3vw;
+    width: 29%;
+  }
+
+  /* 패턴 연결선 */
+  .lab_pattern_note::before {
+    border-top-width: 1px;
+  }
+
+  /* 카무플라주 연결선 */
+  .lab_note_camo::before {
+    left: 11.5vw;
+    top: 0.8vw;
+    width: 15.9vw;
+    height: 6.5vw;
+    border-right-width: 1px;
+    box-sizing: border-box;
+  }
+
+  .lab_note_camo::after {
+    left: calc(26.55vw - 0.5px);
+    top: 7.3vw;
+  }
+
+  /* 퀼팅 연결선 */
+  .lab_note_quilting::before {
+    left: -5.5vw;
+    top: calc(0.65vw - 0.5px);
+    width: 4.2vw;
+  }
+
+  .lab_note_quilting::after {
+    left: -7.2vw;
+    top: -0.2vw;
+  }
+
+  /* 인체공학적 패턴 연결선 */
+  .lab_note_ergonomic::before {
+    left: 10.5vw;
+    top: 0.5vw;
+    width: 9.6vw;
+  }
+
+  .lab_note_ergonomic::after {
+    left: 20.1vw;
+    top: calc(-0.35vw + 0.5px);
+  }
+
+  /* 헤링본 연결선 */
+  .lab_note_herringbone::before {
+    right: calc(100% + 1vw);
+    top: calc(0.65vw - 0.5px);
+    width: 4.2vw;
+  }
+
+  .lab_note_herringbone::after {
+    left: -6.9vw;
+    top: -0.2vw;
+  }
+
+  /* 패턴 하단 제목 */
+  .lab_pattern_label {
+    bottom: 3.125vw;
+    font-size: 1.4648vw;
+  }
+
+  /* 완성된 옷 */
+  .lab_complete_coat {
+    left: 19.5%;
+    top: 19.8vw;
+    width: 27.15%;
+    height: auto;
+  }
+
+  .lab_complete_copy {
+    left: 51.3%;
+    top: 33.9vw;
+  }
+
+  .lab_complete_copy h3 {
+    margin-bottom: 1.46vw;
+    font-size: 2.1484vw;
+  }
+
+  .lab_complete_copy p {
+    margin-left: 4.6vw;
+    font-size: 1.7578vw;
+  }
+}
+
+/* 768px 반응형 */
+@media (max-width: 768px) {
+  /* 공통 */
+  .lab_content {
+    padding: 0 5.8%;
+  }
+
+  /* 영상 */
+  .lab_hero {
+    height: 71.615vw;
+  }
+
+  /* 소재 소개 */
+  .lab_intro {
+    padding-top: 7.2917vw;
+  }
+
+  .lab_intro h1 {
+    line-height: 2.8646vw;
+  }
+
+  .lab_intro > .lab_en {
+    font-size: 1.6927vw;
+    line-height: 2.6042vw;
+  }
+
+  .lab_page .lab_intro_desc {
+    max-width: 72.9167vw;
+    margin-top: 4.6875vw;
+    font-size: 1.8229vw;
+    line-height: 2.6042vw;
+  }
+
+  /* 실험 공간 */
+  .lab_gallery {
+    margin-top: 31.5vw;
+  }
+
+  .lab_gallery h2,
+  .lab_process h2 {
+    padding-top: 3.9062vw;
+    font-size: 1.8229vw;
+  }
+
+  .lab_gallery > p {
+    margin-top: 2.8646vw;
+    font-size: 1.8229vw;
+    line-height: 2.7344vw;
+  }
+
+  .lab_gallery_list {
+    gap: 14%;
+    margin-top: 5.4688vw;
+  }
+
+  .lab_gallery_item img {
+    height: 57.8vw;
+  }
+
+  .lab_gallery_item figcaption {
+    margin-top: 0.7812vw;
+    font-size: 1.5625vw;
+  }
+
+  /* 의류 염색 기술 */
+  .lab_process {
+    margin-top: 35.6771vw;
+  }
+
+  .lab_process h2 {
+    margin-bottom: 4.5573vw;
+  }
+
+  /* 비커와 설명 배치 */
+  .lab_stage {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto 7vw 0.4vw;
+    justify-items: center;
+    row-gap: 4.9479vw;
+    height: auto;
+    margin-top: 8.5vw;
+  }
+
+  /* 비커 */
+  .lab_beaker {
+    grid-column: 1;
+    grid-row: 1;
+    width: 23vw;
+    max-width: 100%;
+    margin: 0;
+  }
+
+  /* 염색 설명과 진행 바 공통 */
+  .lab_step,
+  .lab_progress {
+    grid-column: 1;
+    width: 37.7604vw;
+    max-width: 100%;
+  }
+
+  /* 염색 설명 */
+  .lab_step {
+    position: static;
+    grid-row: 2;
+  }
+
+  .lab_step h3 {
+    font-size: 1.9531vw;
+    line-height: 2.8646vw;
+  }
+
+  .lab_step p {
+    margin-top: 1.3021vw;
+    font-size: 1.5625vw;
+    line-height: 2.474vw;
+  }
+
+  /* 비커 연결선 숨김 */
+  .lab_step h3::before,
+  .lab_step h3::after {
+    content: none;
+  }
+
+  /* 진행 바 공통 색상 */
+  .lab_progress,
+  .lab_pattern_bar {
+    background: #4d4d4d;
+  }
+
+  .lab_progress_fill,
+  .lab_pattern_bar.is-active {
+    background: #96a398;
+  }
+
+  /* 염색 진행 바 */
+  .lab_progress {
+    display: block;
+    grid-row: 3;
+    height: 0.3906vw;
+    overflow: hidden;
+  }
+
+  .lab_progress_fill {
+    display: block;
+    width: 0;
+    height: 100%;
+  }
+
+  /* 패턴 장면 */
+  .lab_pattern_scene {
+    top: -5vw;
+  }
+
+  /* 카무플라주 패턴 */
+  .lab_part_camo {
+    left: 38.7%;
+    top: 19.6615vw;
+    width: 11.9792vw;
+    height: 9.5052vw;
+    object-fit: cover;
+    object-position: top;
+    clip-path: polygon(0 0, 100% 0, 80% 100%, 20% 100%);
+  }
+
+  /* 퀼팅 패턴 */
+  .lab_part_quilting {
+    left: 54.5%;
+    top: 16.9271vw;
+    height: 15.3646vw;
+  }
+
+  /* 인체공학적 패턴 */
+  .lab_part_ergonomic {
+    left: 33.5%;
+    top: 28.2552vw;
+    height: 14.3229vw;
+  }
+
+  /* 헤링본 패턴 */
+  .lab_part_herringbone {
+    left: 48.3%;
+    top: 31.5104vw;
+    width: 10.9375vw;
+  }
+
+  /* 패턴 설명 */
+  .lab_pattern_note {
+    left: 28.4%;
+    top: 46.0938vw;
+    width: 43.2%;
+  }
+
+  .lab_pattern_note h3,
+  .lab_pattern_note p {
+    font-size: 1.8229vw;
+  }
+
+  .lab_pattern_note h3 {
+    margin-bottom: 1.5625vw;
+  }
+
+  .lab_pattern_note p {
+    line-height: 2.6042vw;
+  }
+
+  /* 패턴 설명 순차 교체 */
+  .lab_pattern_scene.is-playing .lab_pattern_note {
+    animation: none;
+    transition: opacity 0.25s ease;
+  }
+
+  .lab_pattern_scene.is-playing .lab_pattern_note.is-active {
+    opacity: 1;
+  }
+
+  /* 패턴 연결선 숨김 */
+  .lab_pattern_note::before,
+  .lab_pattern_note::after {
+    display: none;
+  }
+
+  /* 패턴 진행 바 */
+  .lab_pattern_progress {
+    position: absolute;
+    left: 50%;
+    top: 62.8906vw;
+    width: 43.2%;
+    height: 0.5208vw;
+    transform: translateX(-50%);
+
+    display: flex;
+    gap: 0.3906vw;
+
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .lab_pattern_scene.is-playing .lab_pattern_progress {
+    opacity: 1;
+  }
+
+  .lab_pattern_bar {
+    flex: 1;
+    height: 100%;
+  }
+
+  /* 패턴 하단 제목 */
+  .lab_pattern_label {
+    bottom: 1.8229vw;
+    font-size: 1.9531vw;
+  }
+
+  /* 완성 장면 */
+  .lab_complete_scene {
+    top: -5vw;
+  }
+
+  /* 완성된 옷 */
+  .lab_complete_coat {
+    left: 21.2%;
+    top: 26.1719vw;
+    width: 24.2188vw;
+  }
+
+  .lab_complete_copy {
+    left: 45.8%;
+    top: 39.0625vw;
+    width: 52%;
+  }
+
+  .lab_complete_copy h3 {
+    margin-bottom: 1.9531vw;
+    font-size: 2.3438vw;
+  }
+
+  .lab_complete_copy p {
+    margin-left: 4.9479vw;
+    font-size: 1.8229vw;
+  }
+}
+
+/* 480px 반응형 */
+@media (max-width: 480px) {
+  /* 공통 */
+  .lab_content {
+    padding: 0 7%;
+  }
+
+  /* 영상 */
+  .lab_hero {
+    height: 166.667vw;
+  }
+
+  /* 소재 소개 */
+  .lab_intro {
+    padding-top: 8.3333vw;
+  }
+
+  .lab_intro h1 {
+    font-size: 3.3333vw;
+    line-height: 4.7917vw;
+  }
+
+  .lab_intro > .lab_en {
+    font-size: 2.5vw;
+    line-height: 4.1667vw;
+  }
+
+  .lab_page .lab_intro_desc {
+    max-width: 100%;
+    margin-top: 8.75vw;
+    font-size: 2.9167vw;
+    line-height: 4.1667vw;
+  }
+
+  /* 실험 공간 */
+  .lab_gallery {
+    margin-top: 42.5vw;
+  }
+
+  .lab_gallery h2,
+  .lab_process h2 {
+    padding-top: 6.25vw;
+    font-size: 2.9167vw;
+  }
+
+  .lab_gallery > p {
+    max-width: 71.875vw;
+    margin-top: 4.5833vw;
+    font-size: 2.9167vw;
+    line-height: 4.375vw;
+  }
+
+  .lab_gallery_list {
+    flex-direction: column;
+    gap: 10vw;
+    margin-top: 21.25vw;
+  }
+
+  .lab_gallery_item {
+    flex: none;
+    width: 100%;
+  }
+
+  .lab_gallery_item img {
+    height: 52.083vw;
+  }
+
+  .lab_gallery_item figcaption {
+    margin-top: 1.25vw;
+    font-size: 2.5vw;
+  }
+
+  /* 의류 염색 기술 */
+  .lab_process {
+    margin-top: 32.9167vw;
+  }
+
+  .lab_process h2 {
+    margin-bottom: 23.9583vw;
+  }
+
+  .lab_stage {
+    grid-template-rows: auto 25vw 0.625vw;
+    row-gap: 7.9167vw;
+  }
+
+  /* 비커 */
+  .lab_beaker {
+    width: 44.7917vw;
+  }
+
+  /* 염색 설명과 진행 바 */
+  .lab_step,
+  .lab_progress {
+    width: 60.4167vw;
+  }
+
+  .lab_step h3 {
+    font-size: 3.3333vw;
+    line-height: 4.7917vw;
+  }
+
+  .lab_step p {
+    margin-top: 2.2917vw;
+    font-size: 2.9167vw;
+    line-height: 4.1667vw;
+  }
+
+  .lab_progress {
+    height: 0.625vw;
+  }
+
+  /* 카무플라주 패턴 */
+  .lab_part_camo {
+    left: 23.3%;
+    top: 27.9167vw;
+    width: 31.25vw;
+    height: 24.1667vw;
+  }
+
+  /* 퀼팅 패턴 */
+  .lab_part_quilting {
+    left: 54.4%;
+    top: 33.9583vw;
+    height: 29.5833vw;
+  }
+
+  /* 인체공학적 패턴 */
+  .lab_part_ergonomic {
+    left: 21.2%;
+    top: 55vw;
+    height: 35.4167vw;
+  }
+
+  /* 헤링본 패턴 */
+  .lab_part_herringbone {
+    left: 53.1%;
+    top: 68.9583vw;
+    width: 26.0417vw;
+  }
+
+  /* 패턴 설명 */
+  .lab_pattern_note {
+    left: 19.792%;
+    top: 103.75vw;
+    width: 60.416%;
+  }
+
+  .lab_pattern_note h3,
+  .lab_pattern_note p {
+    font-size: 2.9167vw;
+  }
+
+  .lab_pattern_note h3 {
+    margin-bottom: 2.7083vw;
+  }
+
+  .lab_pattern_note p {
+    line-height: 4.1667vw;
+  }
+
+  /* 패턴 진행 바 */
+  .lab_pattern_progress {
+    top: 129.5833vw;
+    width: 60.416%;
+    height: 0.8333vw;
+    gap: 0.625vw;
+  }
+
+  /* 패턴 하단 제목 */
+  .lab_pattern_label {
+    bottom: auto;
+    top: 138vw;
+    font-size: 3.125vw;
+  }
+
+  /* 완성된 옷 */
+  .lab_complete_coat {
+    left: 30%;
+    top: 48.125vw;
+    width: 40%;
+  }
+
+  .lab_complete_copy {
+    left: 26.25%;
+    top: 114.7917vw;
+    width: 73.75%;
+  }
+
+  .lab_complete_copy h3 {
+    margin-bottom: 3.125vw;
+    font-size: 3.75vw;
+  }
+
+  .lab_complete_copy p {
+    margin-left: 8.3333vw;
+    font-size: 2.9167vw;
+  }
+
+  /* 스크롤 고정 위치 */
+  .lab_pin {
+    top: 10vh;
+    height: 90vh;
+  }
+
+  /* 패턴과 완성 장면 위치 */
+  .lab_pattern_scene,
+  .lab_complete_scene {
+    top: -1vw;
+    height: 50vh;
+  }
+}

@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MATERIAL LAB | C.P. Company</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/section/material.css" />
+  </head>
+
+  <body>
+    <!-- 헤더 -->
+    <div id="header_inner"></div>
+
+    <main class="lab_page">
+      <!-- 01. 실험 영상 -->
+      <section class="lab_hero">
+        <video id="labVideo" autoplay muted loop playsinline>
+          <source src="img/material/material-lab-video-01.mp4" type="video/mp4" />
+        </video>
+
+        <!-- 영상 소리 켜기 / 끄기 -->
+        <button
+          class="lab_sound"
+          id="labSound"
+          type="button"
+          aria-label="소리 켜기"
+          aria-pressed="false"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <!-- 스피커 본체 -->
+            <path d="M11 5 6 9H3v6h3l5 4V5Z" />
+
+            <!-- 소리 끄기 -->
+            <path class="lab_sound_off" d="m16 9 5 6 M21 9l-5 6" />
+
+            <!-- 소리 켜기 -->
+            <path class="lab_sound_on" d="M15.5 8a5 5 0 0 1 0 8 M18.5 5a9 9 0 0 1 0 14" />
+          </svg>
+        </button>
+      </section>
+
+      <div class="lab_content">
+        <div class="lab_inner">
+          <!-- 02. 소재 소개 -->
+          <section class="lab_intro">
+            <h1>소재의 실험에서 시작되는 새로운 가능성</h1>
+
+            <p class="lab_en">BEYOND MATERIALS</p>
+
+            <p class="lab_intro_desc">
+              <span class="lab_en">C.P. COMPANY</span>는 끊임없는 소재 연구와 실험을 통해 의복의
+              새로운 가능성을 탐구합니다. 완성된 의류에 색을 입히는 가먼트 다잉부터 정교한 패턴
+              설계까지, 모든 제작 과정에는 기능성과 혁신을 향한 브랜드의 철학이 담겨 있습니다.
+              소재와 기술의 결합을 통해 실험적인 의복을 새로운 형태로 발전시킵니다.
+            </p>
+          </section>
+
+          <!-- 03. 실험 공간 -->
+          <section class="lab_gallery">
+            <h2>01 실험 공간</h2>
+
+            <p>다양한 염색과 가공 실험을 통해 소재의 새로운 가능성을 관찰하고 기록합니다.</p>
+
+            <div class="lab_gallery_list">
+              <!-- 이미지 01 -->
+              <figure class="lab_gallery_item">
+                <img src="img/material/lab-machine-preview03.png" alt="C.P. Company 염색 기계" />
+                <figcaption>C.P. 컴퍼니 연구개발센터</figcaption>
+              </figure>
+
+              <!-- 이미지 02 -->
+              <figure class="lab_gallery_item">
+                <img src="img/material/lab-garment-preview.png" alt="C.P. Company 염색 연구소" />
+                <figcaption>C.P. 컴퍼니 염색 연구소</figcaption>
+              </figure>
+            </div>
+          </section>
+
+          <!-- 04. 스크롤 애니메이션 -->
+          <section class="lab_process" id="labProcess">
+            <div class="lab_pin">
+              <!-- 01. 비커 염색 기술 -->
+              <div class="lab_dye_scene" id="labDyeScene">
+                <h2>02 의류 염색 기술</h2>
+
+                <div class="lab_stage">
+                  <!-- 비커 이미지 -->
+                  <div class="lab_beaker">
+                    <div class="lab_liquid">
+                      <div class="lab_water" id="labWater"></div>
+                    </div>
+
+                    <img src="img/material/Glass Flask03.png" alt="염색 실험용 비커" />
+                  </div>
+
+                  <!-- 설명 01 : 오른쪽 아래 -->
+                  <article class="lab_step lab_step01">
+                    <h3>소재가 지닌 가능성을 탐구하다</h3>
+                    <p>
+                      섬유별 염료 흡수율과 수축 특성을 비교·분석하고, 소재의 특성에 적합한 염색
+                      조건과 색채 표현의 가능성을 연구합니다.
+                    </p>
+                  </article>
+
+                  <!-- 설명 02 : 왼쪽 아래 -->
+                  <article class="lab_step lab_step02">
+                    <h3>염색을 고려한 구조를 설계하다</h3>
+                    <p>
+                      염색 과정에서 발생하는 수축과 형태 변화를 고려하며, 의도한 실루엣과 기능을
+                      유지할 수 있도록 의류의 구조를 설계합니다.
+                    </p>
+                  </article>
+
+                  <!-- 설명 03 : 오른쪽 위 -->
+                  <article class="lab_step lab_step03">
+                    <h3>완성된 의류에 색을 입히다</h3>
+                    <p>
+                      완성된 의류를 염색조에 투입하고, 섬유별 염색 반응의 차이를 활용하여 깊이 있는
+                      색감과 미묘한 톤의 변화를 구현합니다.
+                    </p>
+                  </article>
+
+                  <!-- 설명 04 : 왼쪽 위 -->
+                  <article class="lab_step lab_step04">
+                    <h3>소재의 차이로 고유한 색감을 완성하다</h3>
+                    <p>
+                      섬유와 방직 구조에 따라 나타나는 색상 변화와 표면의 변화를 활용하며, 염료마다
+                      고유한 색채의 질감을 완성합니다.
+                    </p>
+                  </article>
+
+                  <!-- 염색 진행 바 -->
+                  <div class="lab_progress" aria-hidden="true">
+                    <span class="lab_progress_fill" id="labProgressFill"></span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 02. 패턴 조각 애니메이션 -->
+              <div class="lab_pattern_scene" id="labPatternScene">
+                <div class="lab_pattern_inner" id="labPatternInner">
+                  <!-- 카무플라주 패턴 -->
+                  <img
+                    class="lab_part lab_part_camo"
+                    src="img/material/demo-camo_01.png"
+                    alt="카무플라주 패턴"
+                    data-rotate="0"
+                  />
+
+                  <!-- 퀼팅 패턴 -->
+                  <img
+                    class="lab_part lab_part_quilting"
+                    src="img/material/demo-quilting_02.png"
+                    alt="퀼팅 패턴"
+                    data-rotate="40"
+                  />
+
+                  <!-- 인체공학적 패턴 -->
+                  <img
+                    class="lab_part lab_part_ergonomic"
+                    src="img/material/demo-ergonomic_02.png"
+                    alt="인체공학적 패턴"
+                    data-rotate="-40"
+                  />
+
+                  <!-- 헤링본 패턴 -->
+                  <img
+                    class="lab_part lab_part_herringbone"
+                    src="img/material/demo-herring._02.png"
+                    alt="헤링본 패턴"
+                    data-rotate="0"
+                  />
+
+                  <!-- 패턴 설명 -->
+                  <div class="lab_pattern_notes">
+                    <!-- 카무플라주 설명 -->
+                    <article class="lab_pattern_note lab_note_camo">
+                      <h3>카무플라주 패턴</h3>
+                      <p>
+                        밀리터리에서 영감을 받은 위장 패턴을 현대적인 감각으로 재해석하여 브랜드
+                        특유의 실용적이고 개성 있는 디자인을 표현합니다.
+                      </p>
+                    </article>
+
+                    <!-- 퀼팅 설명 -->
+                    <article class="lab_pattern_note lab_note_quilting">
+                      <h3>퀼팅 패턴</h3>
+                      <p>
+                        일정한 간격으로 반복되는 봉제선이 만들어내는 패턴. 패딩의 충전재를
+                        구획하면서 의류 표면에 규칙적인 입체감과 볼륨을 형성합니다.
+                      </p>
+                    </article>
+
+                    <!-- 인체공학적 패턴 설명 -->
+                    <article class="lab_pattern_note lab_note_ergonomic">
+                      <h3>인체공학적 패턴</h3>
+                      <p>
+                        신체의 움직임을 고려한 입체적인 패턴 설계로 활동성과 편안한 착용감을
+                        높입니다.
+                      </p>
+                    </article>
+
+                    <!-- 헤링본 패턴 설명 -->
+                    <article class="lab_pattern_note lab_note_herringbone">
+                      <h3>헤링본 패턴</h3>
+                      <p>
+                        V자 형태가 반복되는 직물 무늬. 사선이 교차하는 촘촘한 조직으로 단색 의류에도
+                        섬세한 표면 질감과 깊이감을 더합니다.
+                      </p>
+                    </article>
+                  </div>
+
+                  <!-- 패턴 설명 진행 바 -->
+                  <div class="lab_pattern_progress" aria-label="패턴 설명 진행 상황">
+                    <span class="lab_pattern_bar"></span>
+                    <span class="lab_pattern_bar"></span>
+                    <span class="lab_pattern_bar"></span>
+                    <span class="lab_pattern_bar"></span>
+                  </div>
+
+                  <!-- 패턴 하단 제목 -->
+                  <p class="lab_pattern_label">( PATTERN )</p>
+                </div>
+              </div>
+
+              <!-- 03. 의류 완성 애니메이션 -->
+              <div class="lab_complete_scene" id="labCompleteScene">
+                <div class="lab_complete_inner">
+                  <!-- 완성된 옷 이미지 -->
+                  <img
+                    class="lab_complete_coat"
+                    id="labCompleteCoat"
+                    src="img/material/demo-coat.png"
+                    alt="완성된 C.P. Company 재킷"
+                  />
+
+                  <!-- 완성된 옷 설명 -->
+                  <div class="lab_complete_copy" id="labCompleteCopy">
+                    <h3>FORM FOLLOWS FUNCTION</h3>
+                    <p>형태는 기능에서 시작된다.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <!-- 푸터 -->
+    <div id="footer-container"></div>
+
+    <!-- 애니메이션 라이브러리 -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+
+    <!-- 헤더 자바스크립트 -->
+    <script src="./js/header.js"></script>
+
+    <!-- 헤더 연결 -->
+    <script>
+      fetch("./components/header.html")
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("헤더 파일을 불러오지 못했습니다.");
+          }
+
+          return response.text();
+        })
+        .then((html) => {
+          const doc = new DOMParser().parseFromString(html, "text/html");
+
+          const header = doc.querySelector("#header");
+          const tabletMenu = doc.querySelector(".tablet_menu");
+
+          if (!header || !tabletMenu) {
+            throw new Error("헤더 요소를 찾지 못했습니다.");
+          }
+
+          document.querySelector("#header_inner").append(header, tabletMenu);
+
+          initHeader();
+        })
+        .catch((error) => console.error(error));
+    </script>
+
+    <!-- 푸터 연결 -->
+    <script>
+      fetch("./components/footer.html")
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("푸터 파일을 불러오지 못했습니다.");
+          }
+
+          return response.text();
+        })
+        .then((html) => {
+          const doc = new DOMParser().parseFromString(html, "text/html");
+          const footer = doc.querySelector("#footer");
+
+          if (!footer) {
+            throw new Error("푸터 요소를 찾지 못했습니다.");
+          }
+
+          document.querySelector("#footer-container").append(footer);
+        })
+        .catch((error) => console.error(error));
+    </script>
+
+    <!-- 머터리얼 자바스크립트 -->
+    <script src="./js/material.js"></script>
+  </body>
+</html>

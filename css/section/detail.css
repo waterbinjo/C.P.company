@@ -1,0 +1,513 @@
+/* 폰트 */
+
+.detail .font_en {
+  font-family: "Roboto Mono", monospace;
+}
+
+.detail .font_ko {
+  font-family: "Suit", sans-serif;
+}
+
+/* 배경 */
+
+.detail {
+  position: relative;
+  display: flow-root;
+
+  width: 100%;
+  min-height: 100vh;
+
+  color: #ffffff;
+
+  background: linear-gradient(90deg, #0e0d0e 0%, #1a1a1a 35%, #242424 65%, #0e0d0e 100%);
+}
+
+/* 배경 격자 */
+
+.detail::before {
+  content: "";
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+
+  width: 100%;
+  height: 100%;
+
+  pointer-events: none;
+  opacity: 0.2;
+
+  background-image:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0,
+      transparent 47px,
+      rgba(0, 0, 0, 0.8) 48px,
+      transparent 49px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent 0,
+      transparent 47px,
+      rgba(0, 0, 0, 0.8) 48px,
+      transparent 49px
+    );
+}
+
+.detail_section {
+  position: relative;
+  z-index: 1;
+
+  display: flow-root;
+  width: 100%;
+}
+
+/* 데스크톱 */
+
+.detail_inner {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+
+  width: 100%;
+
+  gap: min(85px, calc(2.0089vw + 46.43px));
+
+  margin-top: 8vh;
+  margin-bottom: 8vh;
+
+  padding-left: 47px;
+  padding-right: 47px;
+
+  box-sizing: border-box;
+}
+
+/* 메인 이미지 영역 */
+
+.detail_visual {
+  width: min(898px, calc(53.3482vw - 126.3px));
+  height: min(652px, 84vh);
+
+  flex: 0 0 min(898px, calc(53.3482vw - 126.3px));
+
+  margin-left: max(0px, min(41px, calc(3.90625vw - 34px)));
+
+  box-sizing: border-box;
+}
+
+.detail_visual_img {
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+}
+
+/* 이미지 공통 설정 */
+
+.detail_visual_img img,
+.detail_card_img img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-position: center;
+}
+
+/* 메인 이미지 원본 비율 유지 */
+
+.detail_visual_img img {
+  object-fit: contain;
+}
+
+/* 오른쪽 전체 영역 */
+
+.detail_right {
+  width: min(726px, calc(33.1473vw + 89.6px));
+  height: min(652px, 84vh);
+
+  flex: 0 1 min(726px, calc(33.1473vw + 89.6px));
+
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  box-sizing: border-box;
+}
+
+/* 텍스트 영역 */
+
+.detail_content {
+  width: 100%;
+
+  padding-top: max(0px, min(45px, calc(3.125vw - 15px)));
+
+  box-sizing: border-box;
+}
+
+/* 컬렉션 정보 */
+
+.detail_meta {
+  margin: 0 0 37px;
+
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+/* 영문 제목 */
+
+.detail_title {
+  margin: 0 0 max(0px, min(21px, calc(1.0045vw + 1.714px)));
+
+  font-size: min(50px, calc(1.6741vw + 17.857px));
+  font-weight: 600;
+  line-height: 1.05;
+
+  letter-spacing: -0.04em;
+}
+
+/* 한글 제목 */
+
+.detail_subtitle {
+  margin: 0 0 max(0px, min(34px, calc(2.2321vw - 8.857px)));
+
+  font-size: min(40px, calc(1.5625vw + 10px));
+  font-weight: 500;
+  line-height: 1.2;
+
+  letter-spacing: -0.04em;
+}
+
+/* 상세 설명 */
+
+.detail_desc {
+  width: 100%;
+  margin: 0;
+
+  font-size: min(16px, calc(0.2232vw + 11.714px));
+  font-weight: 400;
+  line-height: 1.45;
+
+  letter-spacing: -0.02em;
+
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+/* 보조 이미지 영역 */
+
+.detail_gallery {
+  display: flex;
+  align-items: flex-start;
+
+  width: 100%;
+  gap: 34px;
+
+  margin-top: 0;
+
+  box-sizing: border-box;
+}
+
+/* 개별 보조 이미지 */
+
+.detail_card {
+  width: min(346px, calc(18.5268vw - 9.714px));
+
+  flex: 0 0 min(346px, calc(18.5268vw - 9.714px));
+
+  min-width: 0;
+  margin: 0;
+
+  box-sizing: border-box;
+}
+
+.detail_card_img {
+  width: 100%;
+  height: min(222px, calc(11.942vw - 7.286px));
+
+  overflow: hidden;
+}
+
+/* 이미지 하단 설명 */
+
+.detail_caption {
+  margin-top: 5px;
+
+  font-size: min(12px, calc(0.2232vw + 7.714px));
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+/* 1024px 태블릿 */
+
+@media (max-width: 1024px) and (min-width: 769px) {
+  .detail_inner {
+    gap: 7.2043%;
+
+    margin-top: 8vh;
+    margin-bottom: 8vh;
+  }
+
+  /* 메인 이미지 */
+
+  .detail_visual {
+    width: 45.1613%;
+    height: 84vh;
+
+    flex: 0 0 45.1613%;
+
+    margin-left: 0.6452%;
+  }
+
+  /* 오른쪽 전체 영역 */
+
+  .detail_right {
+    width: 46.129%;
+    height: 84vh;
+
+    flex: 0 0 46.129%;
+  }
+
+  /* 텍스트 영역 */
+
+  .detail_content {
+    padding-top: calc(1.3vw + 3.688px);
+  }
+
+  .detail_meta {
+    margin-bottom: calc(3.6133vw);
+  }
+
+  .detail_title {
+    margin-bottom: calc(1.0045vw + 1.714px);
+
+    font-size: calc(1.6741vw + 17.857px);
+  }
+
+  .detail_subtitle {
+    margin-bottom: calc(2.2321vw - 8.857px);
+
+    font-size: calc(1.5625vw + 10px);
+  }
+
+  .detail_desc {
+    font-size: calc(0.2232vw + 11.714px);
+  }
+
+  /* 보조 이미지 */
+
+  .detail_gallery {
+    gap: 7.9254%;
+  }
+
+  .detail_card {
+    width: 41.958%;
+
+    flex: 0 0 41.958%;
+  }
+
+  .detail_card_img {
+    height: calc(12.366vw - 11.62px);
+  }
+
+  .detail_caption {
+    font-size: calc(0.2232vw + 7.714px);
+  }
+}
+
+/* 768px 소형 태블릿 */
+
+@media (max-width: 768px) and (min-width: 481px) {
+  .detail_inner {
+    width: 100%;
+    max-width: 644px;
+
+    flex-wrap: wrap;
+
+    gap: 0;
+
+    margin: 0 auto;
+
+    padding: 12vh 32px 4vh;
+  }
+
+  /* 메인 이미지 */
+
+  .detail_visual {
+    width: 42%;
+    height: 44vh;
+
+    flex: 0 0 42%;
+
+    margin-left: 0;
+  }
+
+  /* 오른쪽 영역을 개별 요소로 분리 */
+
+  .detail_right {
+    display: contents;
+  }
+
+  /* 텍스트 영역 */
+
+  .detail_content {
+    position: relative;
+    z-index: 2;
+
+    width: auto;
+
+    flex: 1 1 0;
+    min-width: 0;
+
+    margin-left: 3vw;
+
+    padding-top: 0;
+  }
+
+  .detail_meta {
+    margin: 0 0 10px;
+
+    font-size: 10px;
+  }
+
+  .detail_title {
+    margin: 0 0 6px;
+
+    font-size: clamp(17px, 3.5vw, 25px);
+  }
+
+  .detail_subtitle {
+    margin: 0 0 8px;
+
+    font-size: clamp(12px, 2.4vw, 15px);
+  }
+
+  .detail_desc {
+    font-size: 12px;
+    line-height: 1.35;
+  }
+
+  /* 보조 이미지 */
+
+  .detail_gallery {
+    flex: 0 0 100%;
+
+    gap: 4.4271vw;
+
+    margin-top: 4vh;
+  }
+
+  .detail_card {
+    width: auto;
+
+    flex: 1 1 0;
+  }
+
+  .detail_card_img {
+    height: 25vh;
+  }
+
+  .detail_caption {
+    margin-top: 3px;
+
+    font-size: 10px;
+  }
+}
+
+/* 480px 모바일 */
+
+@media (max-width: 480px) {
+  .detail_inner {
+    flex-direction: column;
+
+    gap: 0;
+
+    margin: 20vw auto 19.5833vw;
+  }
+
+  /* 메인 이미지 */
+
+  .detail_visual {
+    width: calc(100% + 32px);
+    height: 62.0833vw;
+
+    flex: none;
+
+    margin-left: -16px;
+  }
+
+  /* 오른쪽 영역을 개별 요소로 분리 */
+
+  .detail_right {
+    display: contents;
+  }
+
+  /* 텍스트 영역 */
+
+  .detail_content {
+    width: calc(100% + 32px);
+
+    flex: none;
+
+    margin-left: -16px;
+
+    padding-top: 4px;
+  }
+
+  .detail_meta {
+    margin: 0 0 26px;
+
+    font-size: 2.5vw;
+  }
+
+  .detail_title {
+    margin: 0 0 6px;
+
+    font-size: 5.2083vw;
+  }
+
+  .detail_subtitle {
+    margin: 0 0 8px;
+
+    font-size: 3.3333vw;
+  }
+
+  .detail_desc {
+    font-size: 2.9167vw;
+    line-height: 1.42;
+  }
+
+  /* 보조 이미지 */
+
+  .detail_gallery {
+    width: calc(100% + 31px);
+
+    flex: none;
+    flex-direction: column;
+
+    gap: 8.3333vw;
+
+    margin-top: 13.125vw;
+    margin-left: -16px;
+  }
+
+  .detail_card {
+    width: 100%;
+
+    flex: none;
+  }
+
+  .detail_card_img {
+    height: 40.625vw;
+  }
+
+  .detail_caption {
+    margin-top: 4px;
+
+    font-size: 2.5vw;
+  }
+}

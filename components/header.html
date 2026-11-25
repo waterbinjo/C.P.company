@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>헤더</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/section/header.css" />
+  </head>
+
+  <body>
+    <header id="header">
+      <div class="header_inner">
+        <!-- 로고 -->
+        <h1 class="header_logo">
+          <a href="./index.html">
+            <img src="./img/logo.webp" alt="C.P. COMPANY" />
+          </a>
+        </h1>
+
+        <!-- 헤더 오른쪽 -->
+        <div class="header_right">
+          <!-- PC 내비 -->
+          <nav class="header_nav">
+            <ul class="header_menu">
+              <li class="header_item">
+                <a href="about.html" class="header_link">
+                  <span class="header_bracket header_bracket_left">(</span>
+                  <span class="header_text">ABOUT</span>
+                  <span class="header_bracket header_bracket_right">)</span>
+                </a>
+              </li>
+
+              <li class="header_item">
+                <a href="collection.html" class="header_link">
+                  <span class="header_bracket header_bracket_left">(</span>
+                  <span class="header_text">COLLECTION</span>
+                  <span class="header_bracket header_bracket_right">)</span>
+                </a>
+              </li>
+
+              <li class="header_item">
+                <a href="dna.html" class="header_link">
+                  <span class="header_bracket header_bracket_left">(</span>
+                  <span class="header_text">DNA</span>
+                  <span class="header_bracket header_bracket_right">)</span>
+                </a>
+              </li>
+
+              <li class="header_item">
+                <a href="material.html" class="header_link">
+                  <span class="header_bracket header_bracket_left">(</span>
+                  <span class="header_text">MATERIAL LAB</span>
+                  <span class="header_bracket header_bracket_right">)</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+
+          <!-- PC 한영 전환 -->
+          <div class="header_language">
+            <a href="#">EN</a>
+            <span>/</span>
+            <a href="#" class="header_active">KO</a>
+          </div>
+
+          <!-- 태블릿 메뉴 버튼 -->
+          <button class="header_menu_btn" type="button">
+            <span class="menu_text">MENU</span>
+            <span class="close_text">× CLOSE</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- 태블릿 메뉴 -->
+    <div class="tablet_menu">
+      <div class="tablet_language">
+        <a href="#">EN</a>
+        <span>/</span>
+        <a href="#" class="header_active">KO</a>
+      </div>
+
+      <nav class="tablet_nav">
+        <a href="about.html">ABOUT</a>
+        <a href="collection.html">COLLECTION</a>
+        <a href="dna.html">DNA</a>
+        <a href="material.html">MATERIAL LAB</a>
+      </nav>
+
+      <!-- 소셜 -->
+      <div class="tablet_social">
+        <a href="https://www.instagram.com/cpcompany/" target="_blank" rel="noopener noreferrer">
+          Instagram
+        </a>
+
+        <a
+          href="https://www.youtube.com/@CPCompanyOfficial"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Youtube
+        </a>
+
+        <a href="https://pf.kakao.com/_Ntwxlb" target="_blank" rel="noopener noreferrer">
+          Kakao Talk
+        </a>
+      </div>
+    </div>
+
+    <!-- GSAP -->
+    <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <script defer src="../js/header.js"></script>
+  </body>
+</html>

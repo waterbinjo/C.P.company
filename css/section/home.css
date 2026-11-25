@@ -1,0 +1,245 @@
+/* 기본 설정 */
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: #191919;
+  color: #fff;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+/* 메인 영역 */
+
+#main {
+  width: 100%;
+  height: 100%;
+}
+
+#home {
+  --poster-width: 8.333vw;
+  --poster-height: 12.5vw;
+  --spiral-radius-x: 0.25;
+  --spiral-spacing: 7vh;
+  --spiral-center-offset: 0.2;
+
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  isolation: isolate;
+
+  display: flex;
+  flex-direction: column;
+}
+
+/* 배경 격자 */
+
+.grid-background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+
+  background: linear-gradient(90deg, #0e0d0e 0%, #1a1a1a 35%, #242424 65%, #0e0d0e 100%);
+}
+
+.grid-surface,
+#roomGrid {
+  width: 100%;
+  height: 100%;
+}
+
+#roomGrid {
+  display: block;
+}
+
+/* 나선형 갤러리 */
+
+.spiral-scene,
+.spiral-front {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+
+  perspective: 1400px;
+  perspective-origin: 50% 50%;
+}
+
+.spiral-scene {
+  z-index: 2;
+}
+
+.spiral-front {
+  z-index: 10;
+}
+
+.spiral-gallery {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  transform-style: preserve-3d;
+}
+
+/* 포스터 클릭 영역 */
+
+.gallery-item {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  width: var(--poster-width);
+  height: var(--poster-height);
+
+  display: block;
+  background: transparent;
+
+  transform-origin: center;
+  transform-style: preserve-3d;
+
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+/* 포스터 3D 화면 */
+
+.poster-canvas {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+  display: block;
+
+  pointer-events: none;
+}
+
+/* 중앙 렌즈 */
+
+.lens-container {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+}
+
+#lensCanvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* 하단 메뉴 */
+
+.bottom-nav {
+  position: relative;
+  z-index: 50;
+
+  width: 100%;
+  margin-top: auto;
+
+  padding: 25px 70px 25px 50px;
+
+  box-sizing: border-box;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  font-family: "Roboto Mono", monospace;
+  font-size: 14px;
+
+  pointer-events: none;
+}
+
+.collection-link {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+
+  pointer-events: auto;
+  transition: opacity 0.3s;
+}
+
+.collection-link:hover {
+  opacity: 0.5;
+}
+
+/* 1024px */
+
+@media (max-width: 1024px) {
+  #home {
+    --spiral-radius-x: 0.25;
+    --spiral-center-offset: 0.18;
+  }
+
+  .bottom-nav {
+    padding: 22px 54px;
+    font-size: 12px;
+  }
+
+  .collection-link {
+    position: static;
+    left: auto;
+    transform: none;
+    margin-left: auto;
+  }
+
+  .bottom-nav > :last-child:not(.collection-link) {
+    display: none;
+  }
+}
+
+/* 768px */
+
+@media (max-width: 768px) {
+  #home {
+    --poster-width: 12vw;
+    --poster-height: 16vw;
+    --spiral-radius-x: 0.35;
+    --spiral-spacing: 7vh;
+    --spiral-center-offset: 0.18;
+  }
+
+  .bottom-nav {
+    padding: 20px 40px;
+  }
+
+  .collection-link {
+    text-underline-offset: 2px;
+  }
+}
+
+/* 480px */
+
+@media (max-width: 480px) {
+  #home {
+    --poster-width: 18vw;
+    --poster-height: 24vw;
+    --spiral-radius-x: 0.55;
+    --spiral-spacing: 9vw;
+    --spiral-center-offset: 0.18;
+  }
+
+  .bottom-nav {
+    padding: 16px 30px 16px 40px;
+    gap: 10px;
+  }
+
+  .bottom-nav > :first-child,
+  .collection-link {
+    white-space: nowrap;
+  }
+}

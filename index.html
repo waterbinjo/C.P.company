@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>C.P. COMPANY ARCHIVE</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/section/home.css" />
+  </head>
+
+  <body>
+    <!-- 헤더 -->
+    <div id="header_inner"></div>
+
+    <!-- 메인 -->
+    <main id="main">
+      <section id="home" aria-label="C.P. Company Archive">
+        <!-- 곡선형 배경 -->
+        <div class="grid-background">
+          <div class="grid-surface"></div>
+        </div>
+
+        <!-- 나선형 갤러리 -->
+        <div class="spiral-scene">
+          <div class="spiral-gallery" id="spiralGallery"></div>
+        </div>
+
+        <!-- 중앙 3D 렌즈 -->
+        <div class="lens-container">
+          <canvas id="lensCanvas"></canvas>
+        </div>
+
+        <!-- 하단 메뉴 -->
+        <footer class="bottom-nav">
+          <p>C.P. COMPANY ARCHIVE</p>
+
+          <a href="./collection.html" class="collection-link"> all collection </a>
+
+          <p>©2026</p>
+        </footer>
+      </section>
+    </main>
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+    <!-- 메인 JS -->
+    <script type="module" src="./js/home.js"></script>
+
+    <!-- 헤더 JS -->
+    <script src="./js/header.js"></script>
+
+    <!-- 헤더 불러오기 -->
+    <script>
+      fetch("./components/header.html")
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("헤더 파일을 불러오지 못했습니다.");
+          }
+          return response.text();
+        })
+        .then((html) => {
+          document.querySelector("#header_inner").innerHTML = html;
+
+          /* 헤더 애니메이션 실행 */
+          initHeader();
+        })
+        .catch((error) => console.error(error));
+    </script>
+  </body>
+</html>

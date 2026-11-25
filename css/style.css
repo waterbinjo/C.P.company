@@ -1,0 +1,8 @@
+/* SETTING */
+@import url("./setting/font.css");
+@import url("./setting/reset.css");
+
+/* COMMON */
+@import url("./section/header.css");
+@import url("./section/footer.css");
+@import url("./section/loading.css");

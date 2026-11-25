@@ -1,0 +1,1697 @@
+/* 00. 색상 변수 */
+:root {
+  --dna-bg: radial-gradient(ellipse 74% 67% at 42% 50%, #242424 0%, #181818 56%, #0e0d0e 100%);
+  --dna-white: #ffffff;
+  --dna-line: rgba(255, 255, 255, 0.58);
+}
+
+/* 01. 공통 설정 */
+body {
+  background: var(--dna-bg);
+  color: var(--dna-white);
+  -webkit-font-smoothing: antialiased;
+  word-break: keep-all;
+}
+
+.dna_font_en {
+  font-family: "Roboto Mono", monospace;
+}
+
+.dna_intro_inner,
+.dna_origin_inner,
+.dna_seams_inner,
+.dna_identity_inner,
+.dna_archive_inner {
+  position: relative;
+}
+
+.dna_origin_num,
+.dna_seams_num,
+.dna_archive_num {
+  height: auto;
+  font-size: 0.85vw;
+  line-height: 1.125;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+}
+
+.dna_origin_num .dna_font_en,
+.dna_seams_num .dna_font_en,
+.dna_archive_num .dna_font_en {
+  margin-right: 9px;
+}
+
+img:not([src]),
+img[src=""] {
+  opacity: 0;
+}
+
+/* 02. 브랜드 소개 */
+.dna_intro {
+  position: relative;
+  isolation: isolate;
+  height: 910px;
+  overflow: hidden;
+}
+
+.dna_intro_inner {
+  height: 100%;
+}
+
+.dna_intro_text {
+  position: relative;
+  z-index: 2;
+  width: 1100px;
+  padding-top: 232px;
+  padding-left: 150px;
+}
+
+.dna_intro_title {
+  font-size: 23.44vw;
+  line-height: 0.94;
+  font-weight: 700;
+  letter-spacing: -0.085em;
+  white-space: nowrap;
+  margin-left: -24px;
+}
+
+.dna_intro_desc {
+  max-width: 760px;
+  margin-top: 48px;
+  font-size: 0.85vw;
+  line-height: 1.55;
+  font-weight: 400;
+}
+
+.dna_intro_img {
+  position: absolute;
+  z-index: 1;
+  top: 128px;
+  right: 0;
+  width: 1385px;
+  height: calc(100% - 128px);
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 22%);
+  mask-image: linear-gradient(to right, transparent 0%, #000 22%);
+}
+
+.dna_intro_img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 52%;
+}
+
+/* 03. 시그니처 디자인의 기원 */
+.dna_origin {
+  height: 1061px;
+  padding: 327px 150px 0;
+}
+
+.dna_origin_inner {
+  height: 100%;
+}
+
+.dna_origin_content {
+  position: relative;
+  height: 680px;
+  margin-top: 36px;
+}
+
+.dna_origin_list {
+  position: relative;
+  z-index: 2;
+  width: 755px;
+}
+
+.dna_origin_item {
+  border-top: 1px solid var(--dna-line);
+}
+
+.dna_origin_item:last-child {
+  border-bottom: 1px solid var(--dna-line);
+}
+
+.dna_origin_thumb {
+  display: none;
+}
+
+.dna_origin_head {
+  appearance: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 44px 0;
+  text-align: left;
+}
+
+.dna_origin_name {
+  font-size: 2.6vw;
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: -0.055em;
+}
+
+/* 아코디언 아이콘 */
+.dna_origin_head i {
+  position: relative;
+  flex: 0 0 19px;
+  height: 19px;
+}
+
+.dna_origin_head i::before,
+.dna_origin_head i::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 17px;
+  height: 1px;
+  background: var(--dna-white);
+  transform: translate(-50%, -50%);
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+}
+
+.dna_origin_head i::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.dna_origin_item.dna_active .dna_origin_head i::after {
+  opacity: 0;
+  transform: translate(-50%, -50%) rotate(90deg) scale(0.4);
+}
+
+/* 01 시그니처 디자인 설명 */
+.dna_origin_desc {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  font-size: 0.85vw;
+  line-height: 1.6;
+  transition:
+    max-height 0.5s ease,
+    opacity 0.3s ease,
+    padding 0.4s ease;
+}
+
+.dna_origin_item.dna_active .dna_origin_desc {
+  max-height: 180px;
+  padding: 0 12px 22px 0;
+  opacity: 1;
+}
+
+/* 오른쪽 대표 이미지 */
+.dna_origin_main_img {
+  position: absolute;
+  z-index: 1;
+  top: -105px;
+  right: -150px;
+  width: 1213px;
+  height: 785px;
+  overflow: hidden;
+}
+
+.dna_origin_main {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.04);
+  transition:
+    opacity 0.55s ease,
+    visibility 0.55s ease,
+    transform 0.8s ease;
+}
+
+.dna_origin_main.dna_active {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+
+.dna_origin_main img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 75%;
+}
+
+/* 포켓 이미지 */
+.dna_origin_main02 img {
+  width: 80%;
+  object-position: center;
+}
+
+.dna_origin_main03 img {
+  width: 80%;
+  object-position: center 89%;
+}
+
+/* 04. 디자인 구조의 분석 */
+.dna_seams {
+  padding: 343px 150px 288px;
+}
+
+.dna_seams_content {
+  display: grid;
+  grid-template-columns:
+    min(350px, 18.3vw) /* 제목 및 설명 영역 */
+    min(30px, 1.5625vw) /* 제목과 재킷 사이 간격 */
+    min(376px, 19.5833vw) /* 재킷 이미지 영역 */
+    min(131px, 6.8229vw) /* 재킷과 상세 박스 사이 간격 */
+    min(517px, 26.9271vw); /* 상세 박스 영역 */
+  align-items: center; /* 요소 세로 중앙 정렬 */
+  margin-top: 90px; /* 콘텐츠 상단 여백 */
+  margin-left: 90px; /* 콘텐츠 좌우 위치 */
+}
+
+/* 왼쪽 제목 및 설명 */
+.dna_seams_text {
+  grid-column: 1;
+  min-width: 0;
+  margin-bottom: 100px;
+}
+
+.dna_seams_title {
+  font-size: 4.17vw;
+  line-height: 1.02;
+  font-weight: 700;
+  letter-spacing: -0.055em;
+}
+
+.dna_seams_desc {
+  margin-top: 16px;
+  font-size: 0.85vw;
+  line-height: 1.6;
+  letter-spacing: -0.1em;
+}
+
+/* 가운데 재킷 이미지 */
+.dna_seams_clothes {
+  position: relative;
+  grid-column: 3;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+}
+
+.dna_seams_clothes > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* 재킷 위 클릭 버튼 */
+.dna_seams_point {
+  position: absolute;
+  z-index: 5;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  background: #1111119c;
+  color: #fff;
+  transform: translate(-50%, -50%);
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.dna_seams_point:hover,
+.dna_seams_point.dna_active {
+  background: #fff;
+  color: #111;
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.17);
+}
+
+/* 상세 박스 연결선 */
+.dna_seams_point.dna_active::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  height: 1px;
+  background: #fff;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.dna_seams_point01.dna_active::after {
+  width: 245px;
+}
+
+.dna_seams_point02.dna_active::after {
+  width: 199px;
+}
+
+.dna_seams_point03.dna_active::after {
+  width: 301px;
+}
+
+/* 버튼 내부 아이콘 */
+.dna_seams_point i {
+  position: relative;
+  width: 13px;
+  height: 13px;
+}
+
+.dna_seams_point i::before,
+.dna_seams_point i::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 12px;
+  height: 1px;
+  background: currentColor;
+  transform: translate(-50%, -50%);
+}
+
+.dna_seams_point i::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+/* 버튼 위치 */
+.dna_seams_point01 {
+  left: 65%;
+  top: 18%;
+}
+
+.dna_seams_point02 {
+  left: 77%;
+  top: 52%;
+}
+
+.dna_seams_point03 {
+  left: 50%;
+  top: 87%;
+}
+
+/* 오른쪽 상세 박스 */
+.dna_seams_detail {
+  position: relative;
+  z-index: 2;
+  grid-column: 5;
+  width: 100%;
+  height: 556px;
+  overflow: hidden;
+  background: #191919;
+}
+
+.dna_seams_box {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-rows: 281px 1fr;
+  border: 1px solid rgba(255, 255, 255, 0.92);
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(10px);
+  transition:
+    opacity 0.35s ease,
+    transform 0.4s ease,
+    visibility 0.35s ease;
+}
+
+.dna_seams_box.dna_active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+/* 상세 이미지 */
+.dna_seams_detail_img {
+  justify-self: center;
+  width: min(514px, 100%);
+  height: 281px;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.dna_seams_detail_img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 상세 제목 및 설명 */
+.dna_seams_detail_info {
+  min-width: 0;
+  padding: 50px 104px 61px 37px;
+  overflow: hidden;
+}
+
+.dna_seams_detail_title {
+  font-size: 2.6vw;
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+}
+
+.dna_seams_detail_desc {
+  margin-top: 15px;
+  font-size: 0.85vw;
+  line-height: 1.3;
+}
+
+/* 05. 브랜드 정체성 */
+.dna_identity {
+  position: relative;
+  height: 910px;
+  overflow: hidden;
+  background: #101010;
+}
+
+.dna_identity_inner {
+  height: 100%;
+}
+
+.dna_identity_bg {
+  position: absolute;
+  inset: 0;
+}
+
+.dna_identity_bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.55),
+    rgba(0, 0, 0, 0.12) 55%,
+    rgba(0, 0, 0, 0.35)
+  );
+}
+
+.dna_identity_bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.dna_identity_content {
+  position: absolute;
+  right: 150px;
+  bottom: 164px;
+  left: 150px;
+  display: flex;
+  align-items: flex-end;
+  gap: 40px;
+}
+
+.dna_identity_title {
+  flex: 0 0 auto;
+  font-size: 7.29vw;
+  line-height: 0.94;
+  font-weight: 700;
+  letter-spacing: -0.065em;
+}
+
+.dna_identity_line {
+  flex: 1 1 auto;
+  min-width: 20px;
+  height: 1px;
+  margin-bottom: 9px;
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.dna_identity_desc {
+  flex: 0 0 auto;
+  margin-bottom: 2px;
+  font-size: 1.25vw;
+  white-space: nowrap;
+}
+
+.mobile_br {
+  display: none;
+}
+
+/* 06. 디테일 아카이브 */
+.dna_archive {
+  padding: 254px 150px 301px;
+}
+
+.dna_archive_list {
+  display: flex;
+  gap: 8px;
+  width: calc(100% - 400px);
+  height: 580px;
+  margin-top: 102px;
+}
+
+/* 개별 이미지 카드 */
+.dna_archive_item {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  height: 100%;
+  overflow: hidden;
+  background: #1b1b1b;
+  cursor: pointer;
+}
+
+.dna_archive_img {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+}
+
+.dna_archive_img img {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: auto;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  transform: translateX(-50%);
+}
+
+/* 비활성 이미지 어둡게 */
+.dna_archive_item::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.38);
+  opacity: 1;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.dna_archive_item.dna_active::before {
+  opacity: 0;
+}
+
+/* 하단 그라데이션 */
+.dna_archive_item::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: 62% 0 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.64));
+  pointer-events: none;
+}
+
+/* 이미지 제목 및 번호 */
+.dna_archive_caption {
+  position: absolute;
+  z-index: 2;
+  left: 15px;
+  bottom: 15px;
+  width: calc(100% - 30px);
+  font-size: 0.85vw;
+  line-height: 1.4;
+  letter-spacing: -0.03em;
+}
+
+.dna_archive_caption .dna_font_en {
+  display: block;
+  margin-bottom: 8px;
+}
+
+/* 07. 스크롤 등장 효과 */
+.dna_reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.75s ease,
+    transform 0.75s ease;
+}
+
+.dna_reveal.dna_visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 08. 움직임 감소 설정 */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .dna_reveal,
+  .dna_reveal.dna_visible {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .dna_origin_main,
+  .dna_seams_box {
+    transition: none;
+  }
+}
+
+/* 노트북 1024px */
+@media (max-width: 1024px) {
+  /* 브랜드 소개 */
+  .dna_intro {
+    height: 100dvh;
+  }
+
+  .dna_intro_text {
+    width: 100%;
+    padding-top: 19vw;
+    padding-left: 5.5vw;
+  }
+
+  .dna_intro_title {
+    font-size: 19.7vw;
+    margin-left: -1vw;
+  }
+
+  .dna_intro_desc {
+    max-width: 48vw;
+    margin-top: 1.5vw;
+    font-size: 1.4vw;
+    line-height: 1.55;
+  }
+
+  .dna_intro_img {
+    top: auto;
+    bottom: 0;
+    right: 0;
+    width: 80vw;
+    height: 80%;
+  }
+
+  /* 시그니처 디자인의 기원 */
+  .dna_origin {
+    height: auto;
+    padding: 7vw 5.5vw 5vw;
+  }
+
+  .dna_origin_inner {
+    height: auto;
+  }
+
+  .dna_origin_content {
+    height: 43vw;
+    margin-top: 3vw;
+  }
+
+  .dna_origin_list {
+    width: 38vw;
+  }
+
+  .dna_origin_head {
+    padding: 3.3vw 0;
+  }
+
+  .dna_origin_name {
+    font-size: 3.4vw;
+  }
+
+  .dna_origin_desc {
+    font-size: 1.4vw;
+    line-height: 1.55;
+  }
+
+  .dna_origin_item.dna_active .dna_origin_desc {
+    padding: 0 1vw 1.5vw 0;
+  }
+
+  .dna_origin_main_img {
+    top: 0;
+    right: -10vw;
+    width: 80vw;
+    height: 43vw;
+  }
+
+  .dna_origin_main02 img {
+    margin-left: 7vw;
+  }
+  .dna_origin_main03 img {
+    margin-left: 10vw;
+  }
+
+  /* 디자인 구조의 분석 */
+  .dna_seams {
+    padding: 18vw 5.5vw 22vw;
+  }
+
+  .dna_seams_content {
+    display: grid;
+    grid-template-columns: 42% 1fr;
+    column-gap: 2vw;
+    margin-top: 5vw;
+    align-items: center;
+  }
+
+  .dna_seams_text {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .dna_seams_title {
+    font-size: 4.5vw;
+  }
+
+  .dna_seams_desc {
+    margin-top: 1.5vw;
+    font-size: 1.6vw;
+    letter-spacing: -0.05em;
+  }
+
+  .dna_seams_clothes {
+    grid-column: 2;
+    grid-row: 1;
+    width: 52%;
+    margin-top: -2vw;
+  }
+
+  .dna_seams_point {
+    width: 3.2vw;
+    height: 3.2vw;
+  }
+
+  .dna_seams_point i {
+    width: 1.2vw;
+    height: 1.2vw;
+  }
+
+  .dna_seams_point i::before,
+  .dna_seams_point i::after {
+    width: 1.1vw;
+  }
+
+  .dna_seams_point.dna_active::after {
+    display: none;
+  }
+
+  /* 상세 박스 하단 배치 */
+  .dna_seams_detail {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    width: 82vw;
+    height: 17vw;
+    justify-self: center;
+  }
+
+  .dna_seams_box {
+    grid-template-columns: 42% 1fr;
+    grid-template-rows: 1fr;
+    border-radius: 10px;
+  }
+
+  .dna_seams_detail_img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .dna_seams_detail_info {
+    padding: 2.2vw 2.5vw;
+    overflow: auto;
+  }
+
+  .dna_seams_detail_title {
+    margin-top: 10px;
+    font-size: 2.2vw;
+  }
+
+  .dna_seams_detail_desc {
+    margin-top: 1vw;
+    font-size: 1.6vw;
+    line-height: 1.45;
+  }
+
+  /* 브랜드 정체성 */
+  .dna_identity {
+    height: 48vw;
+  }
+
+  .dna_identity_content {
+    right: 5.5vw;
+    bottom: 8vw;
+    left: 5.5vw;
+    display: block;
+  }
+
+  .dna_identity_title {
+    font-size: 6vw;
+  }
+
+  .dna_identity_line {
+    display: none;
+  }
+
+  .dna_identity_desc {
+    margin-top: 1.5vw;
+    font-size: 1.4vw;
+    white-space: normal;
+  }
+
+  /* 디테일 아카이브 */
+  .dna_archive {
+    padding: 12vw 5.5vw 14vw;
+  }
+
+  .dna_archive_list {
+    width: 100%;
+    height: 45vw;
+    margin-top: 8vw;
+    gap: 0.6vw;
+  }
+
+  .dna_archive_item01 {
+    flex: 3 1 0;
+  }
+
+  .dna_archive_item02,
+  .dna_archive_item03,
+  .dna_archive_item04 {
+    flex: 1 1 0;
+  }
+
+  .dna_archive_caption {
+    left: 1.2vw;
+    bottom: 1.3vw;
+    width: 90%;
+    font-size: 1.35vw;
+  }
+
+  .dna_archive_caption .dna_font_en {
+    margin-bottom: 0.6vw;
+  }
+
+  /* 섹션 번호 */
+  .dna_origin_num,
+  .dna_seams_num,
+  .dna_archive_num {
+    height: auto;
+    font-size: 1.6vw;
+    line-height: 1.3;
+  }
+
+  .dna_origin_num .dna_font_en,
+  .dna_seams_num .dna_font_en,
+  .dna_archive_num .dna_font_en {
+    margin-right: 0.8vw;
+  }
+}
+
+/* 태블릿 768px */
+@media (max-width: 768px) {
+  /* 공통 설정 */
+  .dna_intro_inner,
+  .dna_origin_inner,
+  .dna_seams_inner,
+  .dna_identity_inner,
+  .dna_archive_inner {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .dna_origin_num,
+  .dna_seams_num,
+  .dna_archive_num {
+    height: auto;
+    font-size: 2.2vw;
+    line-height: 1.4;
+  }
+
+  /* 브랜드 소개 */
+  .dna_intro {
+    height: 100dvh;
+  }
+
+  .dna_intro_text {
+    width: 100%;
+    padding-top: 17vw;
+    padding-left: 5.21vw;
+  }
+
+  .dna_intro_title {
+    font-size: 19.25vw;
+    letter-spacing: 0;
+    margin-left: -0.9vw;
+    line-height: 0.94;
+  }
+
+  .dna_intro_desc {
+    max-width: 55vw;
+    margin-top: 1vw;
+    font-size: 1.9vw;
+    line-height: 1.48;
+  }
+
+  .dna_intro_img {
+    top: auto;
+    bottom: 0;
+    right: -17vw;
+    width: 100%;
+    height: 47.6vw;
+  }
+
+  .dna_intro_img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+  }
+
+  /* 시그니처 디자인의 기원 */
+  .dna_origin {
+    height: auto;
+    padding: 13.28vw 5.21vw 21.35vw;
+  }
+
+  .dna_origin_inner,
+  .dna_origin_content {
+    height: auto;
+  }
+
+  .dna_origin_content {
+    margin-top: 11.46vw;
+  }
+
+  .dna_origin_list {
+    display: flex;
+    min-width: 0;
+    gap: 2.99vw;
+    width: 100%;
+  }
+
+  .dna_origin_item,
+  .dna_origin_item:last-child {
+    flex: 1 1 0;
+    min-width: 0;
+    border: 0;
+  }
+
+  /* 썸네일 이미지 */
+  .dna_origin_thumb {
+    display: block;
+    width: 100%;
+    height: 24.09vw;
+    overflow: hidden;
+    background-color: #171717;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .dna_origin_thumb img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  /* 지퍼 이미지 위치 */
+  .dna_origin_item:nth-child(3) .dna_origin_thumb img {
+    object-position: center 60%;
+  }
+
+  .dna_origin_head {
+    padding: 1.7vw 0;
+    gap: 5px;
+  }
+
+  .dna_origin_name {
+    font-size: 2.4vw;
+  }
+
+  .dna_origin_head i {
+    flex: 0 0 12px;
+    height: 12px;
+  }
+
+  .dna_origin_head i::before,
+  .dna_origin_head i::after {
+    width: 11px;
+  }
+
+  .dna_origin_desc {
+    font-size: 1.85vw;
+    line-height: 1.45;
+  }
+
+  .dna_origin_item.dna_active .dna_origin_desc {
+    max-height: 15vw;
+    padding: 0 0 1vw;
+  }
+
+  .dna_origin_main_img {
+    display: none;
+  }
+
+  /* 디자인 구조의 분석 */
+  .dna_seams {
+    padding: 0 5.21vw 18.1vw;
+  }
+
+  .dna_seams_content {
+    display: grid;
+    grid-template-columns: 29% 71%;
+    column-gap: 0;
+    row-gap: 0;
+    margin-left: 0;
+    align-items: center;
+  }
+
+  .dna_seams_text {
+    grid-column: 1;
+    grid-row: 1;
+    min-width: 0;
+    transform: translateY(2.9vw);
+  }
+
+  .dna_seams_title {
+    font-size: 5.9vw;
+    line-height: 1.13;
+  }
+
+  .dna_seams_desc {
+    margin-top: 2.2vw;
+    font-size: 1.9vw;
+    line-height: 1.5;
+    letter-spacing: -0.05em;
+  }
+
+  .dna_seams_clothes {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: start;
+    width: 50%;
+    height: 41vw;
+    margin-left: 20%;
+    margin-top: -6vw;
+    aspect-ratio: auto;
+  }
+
+  .dna_seams_clothes > img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .dna_seams_point {
+    width: 3.91vw;
+    height: 3.91vw;
+  }
+
+  .dna_seams_point.dna_active::after {
+    display: none;
+  }
+
+  /* 상세 카드 가로 배치 */
+  .dna_seams_detail {
+    left: -1.5vw;
+    grid-column: 1 / -1;
+    grid-row: 2;
+    display: flex;
+    gap: 1.2vw;
+    justify-self: center;
+    width: 97%;
+    height: 16vw;
+    margin-top: -5vw;
+    overflow: visible;
+    background: transparent;
+  }
+
+  .dna_seams_box,
+  .dna_seams_box.dna_active {
+    position: relative;
+    inset: auto;
+    display: block;
+    flex: 1 1 0;
+    min-width: 0;
+    height: 100%;
+    overflow: hidden;
+    border: 0;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: none;
+  }
+
+  .dna_seams_detail_img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .dna_seams_detail_img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .dna_seams_detail_info {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 1.2vw;
+    overflow: hidden;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.72));
+  }
+
+  .dna_seams_detail_title {
+    font-size: 2.1vw;
+    line-height: 1.2;
+    text-align: center;
+  }
+
+  .dna_seams_detail_desc {
+    display: none;
+    margin-top: 0;
+    font-size: 1.7vw;
+    line-height: 1.4;
+  }
+
+  /* 선택된 상세 카드 설명 */
+  .dna_seams_box.dna_active .dna_seams_detail_info {
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.75);
+  }
+
+  .dna_seams_box.dna_active .dna_seams_detail_title {
+    display: none;
+  }
+
+  .dna_seams_box.dna_active .dna_seams_detail_desc {
+    display: block;
+  }
+
+  /* 브랜드 정체성 */
+  .dna_identity {
+    height: 51.6vw;
+  }
+
+  .dna_identity_content {
+    right: 5.21vw;
+    bottom: 8.65vw;
+    left: 5.21vw;
+    display: block;
+  }
+
+  .dna_identity_title {
+    font-size: 7.1vw;
+    letter-spacing: 0;
+    margin-left: -0.4vw;
+  }
+
+  .dna_identity_line {
+    display: none;
+  }
+
+  .dna_identity_desc {
+    margin-top: 2vw;
+    font-size: 1.9vw;
+    white-space: normal;
+  }
+
+  /* 디테일 아카이브 */
+  .dna_archive {
+    padding: 23.53vw 5.21vw 17.71vw;
+  }
+
+  .dna_archive_list {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: 0.8vw;
+    width: 100%;
+    height: auto;
+    margin-top: 5.24vw;
+  }
+
+  .dna_archive_item,
+  .dna_archive_item01,
+  .dna_archive_item02,
+  .dna_archive_item03,
+  .dna_archive_item04 {
+    flex: none;
+    width: 100%;
+    /* height: 8vw; */
+  }
+
+  .dna_archive_item01 {
+    height: 60vw;
+  }
+
+  .dna_archive_img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .dna_archive_img img {
+    display: block;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    object-fit: cover;
+    object-position: center;
+    transform: none;
+  }
+
+  /* 고글 이미지 */
+  .dna_archive_item01 img {
+    transform: scale(1.05);
+  }
+
+  /* 지퍼 이미지 */
+  .dna_archive_item03 img {
+    transform: scale(1.25);
+    object-position: center 93%;
+  }
+
+  .dna_archive_caption {
+    left: 1.3vw;
+    bottom: 1.2vw;
+    width: 94%;
+    font-size: 2.4vw;
+    line-height: 1.3;
+  }
+
+  .dna_archive_caption .dna_font_en {
+    display: inline;
+    margin: 0 1vw 0 0;
+  }
+
+  .dna_seams_detail,
+  .dna_seams_box,
+  .dna_seams_detail_img,
+  .dna_seams_detail_img img {
+    border-radius: 0;
+  }
+}
+
+/* 모바일 480px */
+@media (max-width: 480px) {
+  /* 공통 설정 */
+  .dna_intro,
+  .dna_origin,
+  .dna_seams,
+  .dna_identity,
+  .dna_archive {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  .dna_intro_inner,
+  .dna_origin_inner,
+  .dna_seams_inner,
+  .dna_identity_inner,
+  .dna_archive_inner {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .dna_origin_num,
+  .dna_seams_num,
+  .dna_archive_num {
+    height: auto;
+    font-size: 3.3vw;
+    line-height: 1.4;
+  }
+
+  /* 브랜드 소개 */
+  .dna_intro {
+    height: 100dvh;
+    overflow: hidden;
+  }
+
+  .dna_intro_text {
+    width: 100%;
+    padding-top: 30vw;
+    padding-left: 6.25vw;
+    padding-right: 6.25vw;
+  }
+
+  .dna_intro_title {
+    margin-left: 0;
+    font-size: 28vw;
+    line-height: 0.82;
+    letter-spacing: -0.07em;
+  }
+
+  .dna_intro_desc {
+    width: 100%;
+    max-width: none;
+    margin-top: 1.5vw;
+    font-size: 3.33vw;
+    line-height: 1.48;
+    overflow-wrap: break-word;
+  }
+
+  .dna_intro_img {
+    top: auto;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 66.5vw;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .dna_intro_img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  /* 시그니처 디자인의 기원 */
+  .dna_origin {
+    height: auto;
+    padding: 29.6vw 6.25vw 33.33vw;
+  }
+
+  .dna_origin_inner,
+  .dna_origin_content {
+    height: auto;
+  }
+
+  .dna_origin_content {
+    margin-top: 19.17vw;
+  }
+
+  .dna_origin_list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10vw;
+  }
+
+  .dna_origin_item,
+  .dna_origin_item:last-child {
+    display: flex;
+    align-items: flex-start;
+    gap: 3.33vw;
+    width: 100%;
+    min-width: 0;
+    min-height: 23vw;
+    flex: none;
+    border: 0;
+  }
+
+  .dna_origin_thumb {
+    display: block;
+    flex: 0 0 31%;
+    width: 31%;
+    height: 23vw;
+    background-position: center;
+    background-size: cover;
+  }
+
+  .dna_origin_info {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  .dna_origin_head {
+    padding: 0 0 2.2vw;
+    gap: 1.5vw;
+  }
+
+  .dna_origin_name {
+    font-size: 2.92vw;
+    line-height: 1.1;
+    letter-spacing: -0.04em;
+  }
+
+  .dna_origin_head i {
+    display: none;
+  }
+
+  .dna_origin_desc {
+    font-size: 2.85vw;
+    line-height: 1.4;
+  }
+
+  /* 모든 설명 펼치기 */
+  .dna_origin_item .dna_origin_desc,
+  .dna_origin_item.dna_active .dna_origin_desc {
+    max-height: none;
+    opacity: 1;
+    padding: 0;
+  }
+
+  .dna_origin_main_img {
+    display: none;
+  }
+
+  /* 디자인 구조의 분석 */
+  .dna_seams {
+    padding: 10vw 6.25vw 38.96vw;
+  }
+
+  .dna_seams_content {
+    display: grid;
+    grid-template-columns: 43% 57%;
+    column-gap: 0;
+    row-gap: 4vw;
+    margin-top: 11.25vw;
+    align-items: center;
+  }
+
+  .dna_seams_text {
+    grid-column: 1;
+    grid-row: 1;
+    transform: none;
+    min-width: 0;
+  }
+
+  .dna_seams_title {
+    font-size: 8.75vw;
+    line-height: 1.12;
+    letter-spacing: -0.055em;
+  }
+
+  .dna_seams_desc {
+    margin-top: 2.5vw;
+    font-size: 2.9vw;
+    line-height: 1.45;
+    letter-spacing: -0.04em;
+  }
+
+  .dna_seams_clothes {
+    grid-column: 2;
+    grid-row: 1;
+    width: 67%;
+    height: 46vw;
+    margin-left: 17%;
+    justify-self: start;
+    aspect-ratio: auto;
+  }
+
+  .dna_seams_clothes > img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .dna_seams_point {
+    width: 5.2vw;
+    height: 5.2vw;
+  }
+
+  .dna_seams_point i {
+    width: 2.5vw;
+    height: 2.5vw;
+  }
+
+  .dna_seams_point i::before,
+  .dna_seams_point i::after {
+    width: 2.5vw;
+  }
+
+  .dna_seams_point.dna_active::after {
+    display: none;
+  }
+
+  /* 상세 카드 */
+  .dna_seams_detail {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    left: 0;
+    display: flex;
+    width: 100%;
+    height: 33.3vw;
+    gap: 1vw;
+    justify-self: stretch;
+    background: transparent;
+    overflow: visible;
+    border-radius: 0;
+  }
+
+  .dna_seams_box,
+  .dna_seams_box.dna_active {
+    position: relative;
+    inset: auto;
+    display: block;
+    flex: 1 1 0;
+    min-width: 0;
+    height: 100%;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    border: 0;
+    border-radius: 0;
+    overflow: hidden;
+  }
+
+  .dna_seams_detail_img,
+  .dna_seams_detail_img img {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+  }
+
+  .dna_seams_detail_img img {
+    object-fit: cover;
+  }
+
+  .dna_seams_detail_info {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 1.5vw;
+    overflow: hidden;
+    border-radius: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.72));
+  }
+
+  .dna_seams_detail_title {
+    font-size: 2.5vw;
+    line-height: 1.2;
+    text-align: center;
+  }
+
+  .dna_seams_detail_desc {
+    display: none;
+    margin-top: 0;
+    font-size: 2.5vw;
+    line-height: 1.3;
+  }
+
+  .dna_seams_box.dna_active .dna_seams_detail_info {
+    justify-content: flex-start;
+    background: rgba(0, 0, 0, 0.75);
+  }
+
+  .dna_seams_box.dna_active .dna_seams_detail_title {
+    display: none;
+  }
+
+  .dna_seams_box.dna_active .dna_seams_detail_desc {
+    display: block;
+  }
+
+  /* 브랜드 정체성 */
+  .dna_identity {
+    height: 145vw;
+  }
+
+  .dna_identity_bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 12% center;
+  }
+
+  .dna_identity_content {
+    display: block;
+    right: 6.25vw;
+    left: 6.25vw;
+    bottom: 31.5vw;
+  }
+
+  .dna_identity_title {
+    margin-left: 0;
+    font-size: 12vw;
+    line-height: 1.06;
+    letter-spacing: 0;
+  }
+
+  .dna_identity_line {
+    display: none;
+  }
+
+  .dna_identity_desc {
+    margin-top: 4vw;
+    font-size: 3.12vw;
+    line-height: 1.5;
+    white-space: normal;
+  }
+
+  .mobile_br {
+    display: inline;
+  }
+
+  /* 디테일 아카이브 */
+  .dna_archive {
+    padding: 45vw 6.25vw 39.4vw;
+  }
+
+  .dna_archive_list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    margin-top: 9.17vw;
+    gap: 1.25vw;
+  }
+
+  .dna_archive_item,
+  .dna_archive_item01,
+  .dna_archive_item02,
+  .dna_archive_item03,
+  .dna_archive_item04 {
+    flex: none;
+    width: 100%;
+    height: 19vw;
+  }
+
+  .dna_archive_item01 {
+    height: 45vw;
+  }
+
+  .dna_archive_img,
+  .dna_archive_img img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .dna_archive_img img {
+    left: 0;
+    top: 0;
+    max-width: 100%;
+    object-fit: cover;
+    transform: none;
+  }
+
+  .dna_archive_caption {
+    left: 2vw;
+    bottom: 1.6vw;
+    width: 96%;
+    font-size: 2.92vw;
+    line-height: 1.25;
+  }
+
+  .dna_archive_caption .dna_font_en {
+    display: inline;
+    margin: 0 1.5vw 0 0;
+  }
+}

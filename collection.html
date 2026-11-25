@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>COLLECTION | C.P. Company</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/section/collection.css" />
+  </head>
+
+  <body>
+    <!-- 헤더 -->
+    <header id="header">
+      <div class="header_inner">
+        <!-- 로고 -->
+        <h1 class="header_logo">
+          <a href="./index.html">
+            <img src="./img/logo.webp" alt="C.P. COMPANY" />
+          </a>
+        </h1>
+
+        <!-- 헤더 오른쪽 -->
+        <div class="header_right">
+          <!-- PC 내비 -->
+          <nav class="header_nav">
+            <ul class="header_menu">
+              <li class="header_item">
+                <a href="about.html" class="header_link">
+                  <span class="header_bracket header_bracket_left">(</span>
+                  <span class="header_text">ABOUT</span>
+                  <span class="header_bracket header_bracket_right">)</span>
+                </a>
+              </li>
+
+              <li class="header_item">
+                <a href="collection.html" class="header_link">
+                  <span class="header_bracket header_bracket_left">(</span>
+                  <span class="header_text">COLLECTION</span>
+                  <span class="header_bracket header_bracket_right">)</span>
+                </a>
+              </li>
+
+              <li class="header_item">
+                <a href="dna.html" class="header_link">
+                  <span class="header_bracket header_bracket_left">(</span>
+                  <span class="header_text">DNA</span>
+                  <span class="header_bracket header_bracket_right">)</span>
+                </a>
+              </li>
+
+              <li class="header_item">
+                <a href="material.html" class="header_link">
+                  <span class="header_bracket header_bracket_left">(</span>
+                  <span class="header_text">MATERIAL LAB</span>
+                  <span class="header_bracket header_bracket_right">)</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+
+          <!-- PC 한영 전환 -->
+          <div class="header_language">
+            <a href="#">EN</a>
+            <span>/</span>
+            <a href="#" class="header_active">KO</a>
+          </div>
+
+          <!-- 태블릿 메뉴 버튼 -->
+          <button class="header_menu_btn" type="button">
+            <span class="menu_text">MENU</span>
+            <span class="close_text">× CLOSE</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- 태블릿 전체 메뉴 -->
+    <div class="tablet_menu">
+      <div class="tablet_language">
+        <a href="#">EN</a>
+        <span>/</span>
+        <a href="#" class="header_active">KO</a>
+      </div>
+
+      <nav class="tablet_nav">
+        <a href="about.html">ABOUT</a>
+        <a href="collection.html">COLLECTION</a>
+        <a href="dna.html">DNA</a>
+        <a href="material.html">MATERIAL LAB</a>
+      </nav>
+
+      <div class="tablet_social">
+        <a href="#" target="_blank">Instagram</a>
+        <a href="#" target="_blank">Youtube</a>
+        <a href="#" target="_blank">Kakao Talk</a>
+      </div>
+    </div>
+
+    <!-- 컬렉션 -->
+    <main id="main">
+      <section id="collection" aria-label="C.P. Company Collection">
+        <!-- 곡선형 배경 -->
+        <div class="grid-background">
+          <div class="grid-surface"></div>
+        </div>
+
+        <!-- 무한 스크롤 갤러리 -->
+        <div class="collection-scene">
+          <div class="collection-gallery" id="collectionGallery"></div>
+        </div>
+
+        <!-- 배경 클릭 시 카테고리 선택 해제 -->
+        <button
+          type="button"
+          class="collection-overlay"
+          id="collectionOverlay"
+          aria-label="컬렉션 선택 해제"
+          hidden
+        ></button>
+
+        <!-- 선택된 컬렉션 -->
+        <div class="selected-gallery" id="selectedGallery" aria-hidden="true" inert></div>
+
+        <!-- 카테고리 메뉴 -->
+        <div class="category-menu" id="categoryMenu">
+          <button
+            type="button"
+            class="category-trigger"
+            id="categoryTrigger"
+            aria-expanded="false"
+            aria-controls="categoryPanel"
+          >
+            <span id="categoryLabel">( ALL )</span>
+          </button>
+
+          <div class="category-panel" id="categoryPanel" aria-hidden="true" inert>
+            <button type="button" class="category-close" id="categoryClose" aria-label="메뉴 닫기">
+              ×
+            </button>
+
+            <div class="category-list" id="categoryList">
+              <button type="button" data-category="all">ALL</button>
+              <button type="button" data-category="10-20">'10 - '20</button>
+              <button type="button" data-category="00-10">'00 - '10</button>
+              <button type="button" data-category="90-00">'90 - '00</button>
+              <button type="button" data-category="80-90">'80 - '90</button>
+              <button type="button" data-category="80-70">'80 - '70</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- 상세페이지 모달 -->
+
+    <dialog class="detail-modal" id="detailModal" aria-label="컬렉션 상세페이지">
+      <!-- 닫기 버튼 -->
+      <form method="dialog">
+        <button type="submit" class="detail-close" id="detailClose" aria-label="상세페이지 닫기">
+          ×
+        </button>
+      </form>
+
+      <!-- 상세페이지 -->
+      <iframe
+        class="detail-frame"
+        id="detailFrame"
+        title="컬렉션 상세페이지"
+        src="about:blank"
+      ></iframe>
+    </dialog>
+
+    <!-- GSAP -->
+    <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+
+    <!-- JS -->
+    <script defer src="./js/header.js"></script>
+    <script defer src="./js/collection.js"></script>
+
+    <!-- 헤더 초기 실행 -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        initHeader();
+      });
+    </script>
+  </body>
+</html>
