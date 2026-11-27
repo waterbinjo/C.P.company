@@ -47,12 +47,18 @@ document.addEventListener("DOMContentLoaded", () => {
     (context) => {
       const isMobile = context.conditions.mobile;
       const is768 = context.conditions.tablet && !isMobile;
+
       const hold = { value: 0 };
 
       // 화살표 요소
       const videoArrow = intro.querySelector(".about_scroll_arrow--video");
       const darkArrow = intro.querySelector(".about_scroll_arrow--dark");
-      const founderArrow = intro.querySelector(".about_scroll_arrow--founder");
+
+      // 중요: 창립자 화살표는 panels 바깥에 있으므로 document에서 선택
+      const founderArrow = document.querySelector(".about_scroll_arrow--founder");
+
+      // 창립자 화면 진행 위치
+      let founderProgress = 1;
 
       // 화살표 초기 상태
       gsap.set(videoArrow, { autoAlpha: 1 });
@@ -69,19 +75,26 @@ document.addEventListener("DOMContentLoaded", () => {
         y: 30,
       });
 
+      // 인트로 타임라인
       const introMotion = gsap.timeline({
         scrollTrigger: {
           trigger: intro,
           start: "top top",
           end: () => "+=" + window.innerHeight * (isMobile ? 2.7 : is768 ? 3.1 : 4.7),
+
           pin: true,
           scrub: 1,
           anticipatePin: 1,
           invalidateOnRefresh: true,
 
           onUpdate: (self) => {
+            // 창립자 콘텐츠 등장
             if (self.progress >= 0.66) {
               founder.classList.add("is-visible");
+            }
+
+            // 창립자 화면이 완전히 나타났을 때 화살표 표시
+            if (self.progress >= founderProgress && self.progress < 1) {
               gsap.set(founderArrow, { autoAlpha: 1 });
             } else {
               gsap.set(founderArrow, { autoAlpha: 0 });
@@ -90,14 +103,14 @@ document.addEventListener("DOMContentLoaded", () => {
         },
       });
 
-      // 영상 화면 유지
+      // 01. 영상 화면 유지
       introMotion.to(hold, {
         value: 1,
         duration: 0.3,
         ease: "none",
       });
 
-      // 영상 어두워짐
+      // 02. 영상 어두워짐
       introMotion.to(".dark", {
         opacity: 0.78,
         duration: 0.65,
@@ -126,7 +139,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "<",
       );
 
-      // 큰 글씨 등장
+      // 03. 큰 글씨 등장
       introMotion.to(".hero_title", {
         autoAlpha: 1,
         y: 0,
@@ -134,7 +147,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ease: "power2.out",
       });
 
-      // 작은 글씨 등장
+      // 04. 작은 글씨 등장
       introMotion.to(".hero_desc", {
         autoAlpha: 1,
         y: 0,
@@ -142,7 +155,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ease: "power2.out",
       });
 
-      // 텍스트 화면 유지
+      // 05. 텍스트 화면 유지
       introMotion.to(hold, {
         value: 2,
         duration: 0.65,
@@ -152,7 +165,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // 어두워진 영상 화면 위치
       introMotion.addLabel("dark");
 
-      // 가로 스크롤
+      // 06. 가로 스크롤
       introMotion.to(panels, {
         xPercent: -50,
         duration: 1.45,
@@ -173,12 +186,15 @@ document.addEventListener("DOMContentLoaded", () => {
       // 창립자 화면 위치
       introMotion.addLabel("founder");
 
-      // 창립자 화면 유지
+      // 07. 창립자 화면 유지
       introMotion.to(hold, {
         value: 3,
         duration: isMobile || is768 ? 1.2 : 0.5,
         ease: "none",
       });
+
+      // 창립자 화면에 도달하는 스크롤 진행률 계산
+      founderProgress = introMotion.labels.founder / introMotion.duration();
 
       // 특정 타임라인 위치로 이동
       const moveToLabel = (label) => {
@@ -220,7 +236,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (!nextSection) return;
 
-        const targetPosition = nextSection.getBoundingClientRect().top + window.scrollY;
+        const trigger = introMotion.scrollTrigger;
+
+        // 다음 섹션의 실제 문서 위치
+        const sectionPosition = nextSection.getBoundingClientRect().top + window.scrollY;
+
+        // 핀 구간이 끝난 뒤 다음 섹션으로 이동
+        const targetPosition = Math.max(sectionPosition, trigger.end + 1);
 
         window.scrollTo({
           top: targetPosition,

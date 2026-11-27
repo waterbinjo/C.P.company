@@ -849,7 +849,7 @@ html {
     grid-column: 2;
     grid-row: 1;
     width: 52%;
-    margin-top: -2vw;
+    margin-top: -10vw;
   }
   .dna_seams_point {
     width: 3.2vw;
@@ -1119,7 +1119,7 @@ html {
     width: 50%;
     height: 41vw;
     margin-left: 20%;
-    margin-top: -6vw;
+    margin-top: -10vw;
     aspect-ratio: auto;
   }
   .dna_seams_clothes > img {
@@ -1466,6 +1466,7 @@ html {
     width: 88%;
     height: 66vw;
     margin-left: 17%;
+    margin-top: -10vw;
     margin-bottom: 10%;
     justify-self: start;
     aspect-ratio: auto;
