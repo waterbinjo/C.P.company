@@ -79,8 +79,6 @@ document.addEventListener("DOMContentLoaded", () => {
           onUpdate: (self) => {
             if (self.progress >= 0.66) {
               founder.classList.add("is-visible");
-            } else if (self.progress < 0.6) {
-              founder.classList.remove("is-visible");
             }
           },
         },
@@ -136,17 +134,13 @@ document.addEventListener("DOMContentLoaded", () => {
         ease: "none",
       });
 
-      /* PC, 1024px 창립자 화면 유지 */
+      /* 창립자 화면 유지 */
 
-      if (!isMobile && !is768) {
-        introMotion.to(hold, {
-          value: 3,
-          duration: 0.5,
-          ease: "none",
-        });
-      }
-
-      return () => founder.classList.remove("is-visible");
+      introMotion.to(hold, {
+        value: 3,
+        duration: isMobile || is768 ? 1.2 : 0.5,
+        ease: "none",
+      });
     },
   );
 
@@ -155,26 +149,20 @@ document.addEventListener("DOMContentLoaded", () => {
   ScrollTrigger.create({
     trigger: ".philosophy_title",
     start: "top 85%",
+    once: true,
 
     onEnter: () => {
       document.querySelector(".philosophy_title").classList.add("is-visible");
-    },
-
-    onLeaveBack: () => {
-      document.querySelector(".philosophy_title").classList.remove("is-visible");
     },
   });
 
   ScrollTrigger.create({
     trigger: ".philosophy_list",
     start: "top 80%",
+    once: true,
 
     onEnter: () => {
       document.querySelector(".philosophy_list").classList.add("is-visible");
-    },
-
-    onLeaveBack: () => {
-      document.querySelector(".philosophy_list").classList.remove("is-visible");
     },
   });
 
@@ -183,36 +171,33 @@ document.addEventListener("DOMContentLoaded", () => {
   ScrollTrigger.create({
     trigger: "#history",
     start: "top 80%",
+    once: true,
 
     onEnter: () => {
       document.querySelector(".history_title").classList.add("is-visible");
-    },
-
-    onLeaveBack: () => {
-      document.querySelector(".history_title").classList.remove("is-visible");
     },
   });
 
   /* HISTORY 중앙선 */
 
-  gsap.fromTo(
-    ".timeline .line",
-    {
-      scaleY: 0,
-    },
-    {
-      scaleY: 1,
-      ease: "none",
+  let maxLineProgress = 0;
 
-      scrollTrigger: {
-        trigger: ".timeline",
-        start: "top 72%",
-        end: "bottom 72%",
-        scrub: true,
-        invalidateOnRefresh: true,
-      },
+  ScrollTrigger.create({
+    trigger: ".timeline",
+    start: "top 72%",
+    end: "bottom 72%",
+    invalidateOnRefresh: true,
+
+    onUpdate: (self) => {
+      if (self.progress > maxLineProgress) {
+        maxLineProgress = self.progress;
+
+        gsap.set(".timeline .line", {
+          scaleY: maxLineProgress,
+        });
+      }
     },
-  );
+  });
 
   /* 연혁 등장 */
 
@@ -222,13 +207,10 @@ document.addEventListener("DOMContentLoaded", () => {
     ScrollTrigger.create({
       trigger: item,
       start: "top 72%",
+      once: true,
 
       onEnter: () => {
         item.classList.add("is-visible");
-      },
-
-      onLeaveBack: () => {
-        item.classList.remove("is-visible");
       },
     });
   });
@@ -238,13 +220,10 @@ document.addEventListener("DOMContentLoaded", () => {
   ScrollTrigger.create({
     trigger: ".timeline",
     start: "bottom 72%",
+    once: true,
 
     onEnter: () => {
       timeline.classList.add("is-complete");
-    },
-
-    onLeaveBack: () => {
-      timeline.classList.remove("is-complete");
     },
   });
 
@@ -255,13 +234,10 @@ document.addEventListener("DOMContentLoaded", () => {
   ScrollTrigger.create({
     trigger: ending,
     start: "top 75%",
+    once: true,
 
     onEnter: () => {
       ending.classList.add("is-visible");
-    },
-
-    onLeaveBack: () => {
-      ending.classList.remove("is-visible");
     },
   });
 

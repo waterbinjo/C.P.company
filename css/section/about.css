@@ -419,13 +419,13 @@ body {
 }
 
 /* 가운데 선 */
-
 .line {
   position: absolute;
   top: 1.2vw;
   bottom: 1.46vw;
   left: 50%;
   width: 0.0625rem;
+  margin-left: -0.5px;
   background: #aaa;
   transform: scaleY(0);
   transform-origin: top center;
@@ -1032,11 +1032,19 @@ body {
   .hero_text {
     min-width: 0;
     width: 100%;
-    padding: 0 5vw;
+    padding: 0 2.83vw 10vw;
+  }
+
+  .hero_title {
+    font-size: 9.2vw;
   }
 
   .hero_desc {
-    font-size: 2.92vw;
+    font-size: 3.4vw;
+  }
+
+  .hero_desc br {
+    display: none;
   }
 
   .founder_inner {
@@ -1065,7 +1073,16 @@ body {
   .founder_label {
     font-size: 2.92vw;
     font-weight: 400;
+    margin-top: 2.2vw;
     margin-bottom: 2.2vw;
+  }
+
+  .founder_info .pc_br {
+    display: none;
+  }
+
+  .founder_info .mobile_br {
+    display: inline;
   }
 
   .founder_title {
@@ -1078,6 +1095,7 @@ body {
     margin: 0;
     white-space: normal;
     text-align: left;
+    margin-top: 9vw;
   }
 
   .founder_meta {
@@ -1098,10 +1116,11 @@ body {
 
   .philosophy_inner {
     width: min(90%, calc(134.4px + 34vw));
+    margin-top: 10vw;
   }
 
   .philosophy_title {
-    font-size: 3.33vw;
+    font-size: 4.5vw;
     font-weight: 700;
   }
 
@@ -1119,10 +1138,10 @@ body {
 
   .item_number {
     height: auto;
-    font-size: 3.33vw;
+    font-size: 3.35vw;
     font-weight: 700;
     padding-left: 1.2px;
-    padding-bottom: 10px;
+    padding-bottom: 15px;
   }
 
   .item_title {
@@ -1131,14 +1150,14 @@ body {
   }
 
   .item_ko {
-    font-size: 2.92vw;
+    font-size: 3.35vw;
     font-weight: 700;
   }
 
   .item_desc {
     min-height: 0;
     margin-top: 3vw;
-    font-size: 3.33vw;
+    font-size: 3.35vw;
     font-weight: 400;
     line-height: 1.5;
   }
@@ -1184,7 +1203,7 @@ body {
 
   .year {
     display: block;
-    font-size: 3.33vw;
+    font-size: 3.35vw;
     font-weight: 700;
     text-align: left;
     padding-right: 0;
@@ -1200,7 +1219,7 @@ body {
   }
 
   .history_text p {
-    font-size: 3.33vw;
+    font-size: 3.35vw;
     font-weight: 400;
     line-height: 1.4;
   }
@@ -1221,7 +1240,7 @@ body {
   }
 
   .ending_sub {
-    font-size: 2.92vw;
+    font-size: 3.35vw;
     font-weight: 300;
   }
 }

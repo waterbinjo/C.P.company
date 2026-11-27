@@ -7,6 +7,9 @@ const gallery = document.querySelector("#spiralGallery");
 const lensCanvas = document.querySelector("#lensCanvas");
 const gridContainer = document.querySelector(".grid-surface");
 
+const detailModal = document.querySelector("#detailModal");
+const detailFrame = document.querySelector("#detailFrame");
+
 const getWidth = () => home.clientWidth;
 const getHeight = () => home.clientHeight;
 
@@ -35,7 +38,7 @@ const SPIRAL = {
   spacing: 70,
   radiusX: 0.25,
   radiusZ: 400,
-  speed: 0.09,
+  speed: 0.1,
   smooth: 0.055,
   startAngle: -0.5,
   centerOffset: 0.18,
@@ -44,14 +47,14 @@ const SPIRAL = {
 /* 자동 스크롤 설정 */
 
 const AUTO_SCROLL = {
-  speed: 1.5,
+  speed: 13,
   delay: 500,
 };
 
 /* 렌즈 회전 설정 */
 
 const LENS_ROTATION = {
-  speed: 5,
+  speed: 1.6,
 };
 
 /* 반응형 나선 설정 */
@@ -72,38 +75,38 @@ function updateSpiralSettings() {
 
 const posterData = [
   /* 00-10 */
-  { image: "./img/home/00-10/collection-00s-01.webp", link: "#" },
-  { image: "./img/home/00-10/collection-00s-02.webp", link: "#" },
-  { image: "./img/home/00-10/collection-00s-03.webp", link: "#" },
-  { image: "./img/home/00-10/collection-00s-04.webp", link: "#" },
+  { image: "./img/home/00-10/collection-00s-01.webp", link: "./detail.html?id=01" },
+  { image: "./img/home/00-10/collection-00s-02.webp", link: "./detail.html?id=11" },
+  { image: "./img/home/00-10/collection-00s-03.webp", link: "./detail.html?id=12" },
+  { image: "./img/home/00-10/collection-00s-04.webp", link: "./detail.html?id=13" },
 
   /* 10-20 */
-  { image: "./img/home/10-20/collection-10s-01.webp", link: "#" },
-  { image: "./img/home/10-20/collection-10s-02.webp", link: "#" },
-  { image: "./img/home/10-20/collection-10s-03.webp", link: "#" },
-  { image: "./img/home/10-20/collection-10s-04.webp", link: "#" },
-  { image: "./img/home/10-20/collection-10s-05.webp", link: "#" },
+  { image: "./img/home/10-20/collection-10s-01.webp", link: "./detail.html?id=14" },
+  { image: "./img/home/10-20/collection-10s-02.webp", link: "./detail.html?id=15" },
+  { image: "./img/home/10-20/collection-10s-03.webp", link: "./detail.html?id=16" },
+  { image: "./img/home/10-20/collection-10s-04.webp", link: "./detail.html?id=17" },
+  { image: "./img/home/10-20/collection-10s-05.webp", link: "./detail.html?id=18" },
 
   /* 70-80 */
-  { image: "./img/home/70-80/collection-70s-01.webp", link: "#" },
-  { image: "./img/home/70-80/collection-70s-02.webp", link: "#" },
-  { image: "./img/home/70-80/collection-70s-03.webp", link: "#" },
-  { image: "./img/home/70-80/collection-70s-04.webp", link: "#" },
-  { image: "./img/home/70-80/collection-70s-05.webp", link: "#" },
+  { image: "./img/home/70-80/collection-70s-01.webp", link: "./detail.html?id=02" },
+  { image: "./img/home/70-80/collection-70s-02.webp", link: "./detail.html?id=03" },
+  { image: "./img/home/70-80/collection-70s-03.webp", link: "./detail.html?id=04" },
+  { image: "./img/home/70-80/collection-70s-04.webp", link: "./detail.html?id=05" },
+  { image: "./img/home/70-80/collection-70s-05.webp", link: "./detail.html?id=06-early" },
 
   /* 80-90 */
-  { image: "./img/home/80-90/collection-80s-01.webp", link: "#" },
-  { image: "./img/home/80-90/collection-80s-02.webp", link: "#" },
-  { image: "./img/home/80-90/collection-80s-03.webp", link: "#" },
-  { image: "./img/home/80-90/collection-80s-04.webp", link: "#" },
-  { image: "./img/home/80-90/collection-80s-05.webp", link: "#" },
+  { image: "./img/home/80-90/collection-80s-01.webp", link: "./detail.html?id=06" },
+  { image: "./img/home/80-90/collection-80s-02.webp", link: "./detail.html?id=07" },
+  { image: "./img/home/80-90/collection-80s-03.webp", link: "./detail.html?id=08" },
+  { image: "./img/home/80-90/collection-80s-04.webp", link: "./detail.html?id=09" },
+  { image: "./img/home/80-90/collection-80s-05.webp", link: "./detail.html?id=10" },
 
   /* 90-00 */
-  { image: "./img/home/90-00/collection-90s-01.webp", link: "#" },
-  { image: "./img/home/90-00/collection-90s-02.webp", link: "#" },
-  { image: "./img/home/90-00/collection-90s-03.webp", link: "#" },
-  { image: "./img/home/90-00/collection-90s-04.webp", link: "#" },
-  { image: "./img/home/90-00/collection-90s-05.webp", link: "#" },
+  { image: "./img/home/90-00/collection-90s-01.webp", link: "./detail.html?id=19" },
+  { image: "./img/home/90-00/collection-90s-02.webp", link: "./detail.html?id=20" },
+  { image: "./img/home/90-00/collection-90s-03.webp", link: "./detail.html?id=21" },
+  { image: "./img/home/90-00/collection-90s-04.webp", link: "./detail.html?id=22" },
+  { image: "./img/home/90-00/collection-90s-05.webp", link: "./detail.html?id=23" },
 ].map((poster, i) => ({
   number: String(i + 1).padStart(2, "0"),
   ...poster,
@@ -153,8 +156,8 @@ const lensGroup = new THREE.Group();
 lensScene.add(lensGroup);
 
 const lensRadius = 1.8;
-const lensDepth = 0.55;
-const ovalRatio = 1.14;
+const lensDepth = 0.5;
+const ovalRatio = 1;
 
 /* 렌즈 반응형 크기 */
 
@@ -428,16 +431,18 @@ home.appendChild(frontLayer);
 const backPosterScene = new THREE.Scene();
 const frontPosterScene = new THREE.Scene();
 
-const posterCamera = new THREE.OrthographicCamera(
-  -getWidth() / 2,
-  getWidth() / 2,
-  getHeight() / 2,
-  -getHeight() / 2,
+/* 포스터 원근감 */
+
+const POSTER_PERSPECTIVE = 4000;
+
+const posterCamera = new THREE.PerspectiveCamera(
+  THREE.MathUtils.radToDeg(2 * Math.atan(getHeight() / (2 * POSTER_PERSPECTIVE))),
+  getWidth() / getHeight(),
   0.1,
-  2000,
+  5000,
 );
 
-posterCamera.position.z = 1000;
+posterCamera.position.z = POSTER_PERSPECTIVE;
 
 /* 포스터 렌더러 */
 
@@ -466,31 +471,7 @@ const frontPosterRenderer = createPosterRenderer(frontGallery);
 /* 포스터 이미지 텍스처 */
 
 function createPosterTexture(poster) {
-  const textureCanvas = document.createElement("canvas");
-
-  textureCanvas.width = 600;
-  textureCanvas.height = 800;
-
-  const ctx = textureCanvas.getContext("2d");
-
-  function drawPlaceholder() {
-    ctx.fillRect(0, 0, 600, 800);
-
-    ctx.fillStyle = "#ffffff";
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
-    ctx.font = '20px "Roboto Mono", monospace';
-
-    ctx.fillText("C.P.", 300, 375);
-    ctx.fillText("COMPANY", 300, 400);
-    ctx.fillText(poster.number, 300, 425);
-  }
-
-  /* 이미지 로딩 전 투명 처리 */
-
-  ctx.clearRect(0, 0, textureCanvas.width, textureCanvas.height);
-
-  const texture = new THREE.CanvasTexture(textureCanvas);
+  const texture = new THREE.Texture();
 
   texture.colorSpace = THREE.SRGBColorSpace;
   texture.anisotropy = 4;
@@ -499,29 +480,36 @@ function createPosterTexture(poster) {
     const image = new Image();
 
     image.onload = () => {
-      const scale = Math.max(
-        textureCanvas.width / image.width,
-        textureCanvas.height / image.height,
-      );
+      /* 가로 이미지 중앙 자르기 */
 
-      const drawWidth = image.width * scale;
-      const drawHeight = image.height * scale;
+      if (image.width > image.height) {
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
 
-      ctx.clearRect(0, 0, textureCanvas.width, textureCanvas.height);
+        canvas.height = image.height;
+        canvas.width = Math.round(image.height * (2 / 3));
 
-      ctx.drawImage(
-        image,
-        (textureCanvas.width - drawWidth) / 2,
-        (textureCanvas.height - drawHeight) / 2,
-        drawWidth,
-        drawHeight,
-      );
+        const cropX = (image.width - canvas.width) / 2;
 
-      texture.needsUpdate = true;
-    };
+        ctx.drawImage(
+          image,
+          cropX,
+          0,
+          canvas.width,
+          canvas.height,
+          0,
+          0,
+          canvas.width,
+          canvas.height,
+        );
 
-    image.onerror = () => {
-      drawPlaceholder();
+        texture.image = canvas;
+      } else {
+        /* 세로 이미지 원본 유지 */
+
+        texture.image = image;
+      }
+
       texture.needsUpdate = true;
     };
 
@@ -546,7 +534,7 @@ readPosterSize();
 const cards = [];
 
 function createPosterGeometry() {
-  return new THREE.PlaneGeometry(posterWidth, posterHeight);
+  return new THREE.PlaneGeometry(posterWidth, posterHeight, 32, 32);
 }
 
 posterData.forEach((poster, index) => {
@@ -583,6 +571,66 @@ posterData.forEach((poster, index) => {
   });
 });
 
+/* 상세페이지 열기 */
+
+function openDetail(link) {
+  if (!link || link === "#" || detailModal.open) return;
+
+  detailFrame.src = link;
+
+  detailModal.showModal();
+}
+
+/* 상세페이지 닫기 */
+
+function closeDetail() {
+  if (!detailModal.open) return;
+
+  detailModal.close();
+}
+
+/* 상세페이지 닫힌 후 초기화 */
+
+detailModal.addEventListener("close", () => {
+  detailFrame.src = "about:blank";
+});
+
+/* 포스터 클릭 */
+
+home.addEventListener("click", (event) => {
+  const card = event.target.closest(".gallery-item");
+
+  if (!card) return;
+
+  event.preventDefault();
+
+  const link = card.getAttribute("href");
+
+  openDetail(link);
+});
+
+/* 상세페이지 바깥 클릭 */
+
+detailModal.addEventListener("click", (event) => {
+  if (event.target === detailModal) {
+    closeDetail();
+  }
+});
+
+/* 상세페이지 내부 ESC 처리 */
+
+detailFrame.addEventListener("load", () => {
+  if (!detailModal.open) return;
+
+  detailFrame.contentDocument?.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      event.preventDefault();
+
+      closeDetail();
+    }
+  });
+});
+
 /* 스크롤 변수 */
 
 let targetScroll = 0;
@@ -607,6 +655,8 @@ function applyScroll(delta) {
 window.addEventListener(
   "wheel",
   (event) => {
+    if (detailModal.open) return;
+
     event.preventDefault();
 
     const multiplier = event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? getHeight() : 1;
@@ -623,6 +673,8 @@ let touchStartY = null;
 window.addEventListener(
   "touchstart",
   (event) => {
+    if (detailModal.open) return;
+
     touchStartY = event.touches[0].clientY;
     lastScrollTime = performance.now();
   },
@@ -632,6 +684,7 @@ window.addEventListener(
 window.addEventListener(
   "touchmove",
   (event) => {
+    if (detailModal.open) return;
     if (touchStartY === null) return;
 
     const y = event.touches[0].clientY;
@@ -696,17 +749,19 @@ function updateGallery() {
 
     const perspective = 1400 / (1400 - z);
 
+    const cameraPerspective = POSTER_PERSPECTIVE / (POSTER_PERSPECTIVE - z);
+
     const spacing = z > 0 ? verticalSpacing : verticalSpacing * perspective;
 
     const y = position * spacing + centerOffset;
 
-    /* 포스터 회전 */
+    /* 렌즈 중심을 바라보는 포스터 회전 */
 
-    const rotateY = -Math.sin(angle) * 55;
+    const rotateY = THREE.MathUtils.radToDeg(Math.atan2(-x, -z));
 
     /* 원근감 */
 
-    const scale = perspective;
+    const scale = perspective / cameraPerspective;
 
     /* 480px 나선 반경 조정 */
 
@@ -715,19 +770,58 @@ function updateGallery() {
       x = Math.sin(angle) * mobileRadius;
     }
 
-    /* 페이드 제거 */
+    /* 깊이에 따른 이미지 밝기 */
 
     const opacity = 1;
+    const depthRatio = (z + SPIRAL.radiusZ) / (SPIRAL.radiusZ * 2);
+    const brightness = 0.05 + depthRatio * 1.1;
 
     /* 포스터 3D 위치 */
 
-    card.mesh.position.set(x, -y, 0);
+    card.mesh.position.set(x / cameraPerspective, -y / cameraPerspective, z);
 
     card.mesh.rotation.y = THREE.MathUtils.degToRad(rotateY);
 
-    card.mesh.scale.setScalar(scale);
+    /* 원본 이미지 비율 유지 */
+
+    const image = card.mesh.material.map.image;
+
+    if (image && image.width && image.height) {
+      const imageRatio = image.width / image.height;
+      const posterRatio = posterWidth / posterHeight;
+
+      if (imageRatio > posterRatio) {
+        card.mesh.scale.set(scale, (scale * posterRatio) / imageRatio, scale);
+      } else {
+        card.mesh.scale.set((scale * imageRatio) / posterRatio, scale, scale);
+      }
+    } else {
+      card.mesh.scale.setScalar(scale);
+    }
+
+    /* 스크롤에 따른 이미지 휘어짐 */
+
+    const velocity = THREE.MathUtils.clamp((targetScroll - currentScroll) * 0.4, -15, 15);
+
+    const vertices = card.mesh.geometry.attributes.position;
+    const uv = card.mesh.geometry.attributes.uv;
+
+    for (let i = 0; i < vertices.count; i++) {
+      const u = uv.getX(i);
+      const v = uv.getY(i);
+
+      const px = (u - 0.5) * posterWidth;
+      const py = (v - 0.5) * posterHeight;
+
+      const bend = Math.pow(v - 0.5, 2) * 4;
+
+      vertices.setXYZ(i, px, py, bend * velocity);
+    }
+
+    vertices.needsUpdate = true;
 
     card.mesh.material.opacity = opacity;
+    card.mesh.material.color.setScalar(brightness);
     card.mesh.visible = true;
     card.mesh.renderOrder = z;
 
@@ -743,9 +837,9 @@ function updateGallery() {
 
     card.link.style.transform = `
       translate(-50%, -50%)
-      translate3d(${x}px, ${y}px, ${z}px)
+      translate3d(${x / cameraPerspective}px, ${y / cameraPerspective}px, ${z}px)
       rotateY(${rotateY}deg)
-      scale(${scale})
+      scale3d(${card.mesh.scale.x}, ${card.mesh.scale.y}, 1)
     `;
 
     card.link.style.visibility = "visible";
@@ -818,10 +912,9 @@ function resize() {
 
   /* 포스터 카메라 */
 
-  posterCamera.left = -w / 2;
-  posterCamera.right = w / 2;
-  posterCamera.top = h / 2;
-  posterCamera.bottom = -h / 2;
+  posterCamera.aspect = w / h;
+
+  posterCamera.fov = THREE.MathUtils.radToDeg(2 * Math.atan(h / (2 * POSTER_PERSPECTIVE)));
 
   posterCamera.updateProjectionMatrix();
 

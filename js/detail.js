@@ -1,6 +1,26 @@
 /* 컬렉션 데이터 */
 
 const detailCollections = {
+  /* 기본 컬렉션 */
+
+  "01": {
+    meta: "C.P. COMPANY / FW001 / 2001",
+
+    title: "MODERN UTILITY",
+
+    subtitle: "기능성과 현대적인 실루엣의 진화",
+
+    description: `
+      2000년대 초반 C.P. COMPANY는 기능적인 디자인과
+      절제된 실루엣을 결합하며 현대적인 스타일을 선보였습니다.
+      구조적인 재단과 실용적인 디테일을 중심으로 전개된
+      컬렉션은 도시적인 감각과 브랜드 특유의 실험적인
+      디자인 철학을 보여줍니다.
+    `,
+
+    mainImage: "img/collection/00-10/collection-00s-01.webp",
+  },
+
   /* 1970년대 */
 
   "02": {
@@ -392,6 +412,42 @@ const detailId = detailParams.get("id") || "01";
 
 const detailData = detailCollections[detailId];
 
+/* 상세페이지 요소 가져오기 */
+
+const detailRoot = document.querySelector(".detail");
+const detailMainImg = document.getElementById("detailMainImg");
+
+/* 메인 이미지 방향 및 비율 확인 */
+
+function setOrientationClass() {
+  const width = detailMainImg.naturalWidth;
+  const height = detailMainImg.naturalHeight;
+
+  if (!width || !height) return;
+
+  /* 이미지 원본 비율 계산 */
+
+  const ratio = width / height;
+
+  detailRoot.style.setProperty("--image-ratio", ratio);
+
+  /* 기존 방향 클래스 제거 */
+
+  detailRoot.classList.remove("is-portrait", "is-landscape");
+
+  /* 가로형 및 세로형 클래스 적용 */
+
+  if (width > height) {
+    detailRoot.classList.add("is-landscape");
+  } else {
+    detailRoot.classList.add("is-portrait");
+  }
+}
+
+/* 이미지 로드 후 방향 확인 */
+
+detailMainImg.addEventListener("load", setOrientationClass);
+
 /* 컬렉션별 콘텐츠 변경 */
 
 if (detailData) {
@@ -404,10 +460,58 @@ if (detailData) {
 
   /* 메인 이미지 변경 */
 
-  document.getElementById("detailMainImg").src = detailData.mainImage;
-  document.getElementById("detailMainImg").alt = detailData.title + " 메인 이미지";
+  detailMainImg.src = detailData.mainImage;
+  detailMainImg.alt = detailData.title + " 메인 이미지";
 
   /* 브라우저 제목 변경 */
 
   document.title = detailData.title + " | C.P. COMPANY ARCHIVE";
+}
+
+/* 이미 로드된 이미지 확인 */
+
+if (detailMainImg.complete) {
+  setOrientationClass();
+}
+/* 768px 상세페이지 높이 자동 조절 */
+
+const tabletModal = window.frameElement?.closest(".detail-modal");
+const tabletInner = document.querySelector(".detail_inner");
+
+function fitTabletModal() {
+  if (!tabletModal) return;
+
+  const isTablet = window.innerWidth > 480 && window.innerWidth <= 768;
+
+  if (isTablet) {
+    const modalHeight = window.parent.innerHeight * 0.65;
+
+    /* 보조 이미지 크기 유지 */
+
+    tabletInner.style.setProperty("--tablet-gallery-height", (modalHeight / 0.75) * 0.24 + "px");
+
+    /* 콘텐츠에 맞춰 모달 높이 조절 */
+
+    tabletModal.style.height =
+      Math.min(Math.ceil(tabletInner.getBoundingClientRect().height * 0.75), modalHeight) + "px";
+  } else {
+    tabletModal.style.removeProperty("height");
+    tabletInner.style.removeProperty("--tablet-gallery-height");
+  }
+}
+
+if (tabletModal) {
+  const observer = new ResizeObserver(fitTabletModal);
+
+  observer.observe(tabletInner);
+
+  window.addEventListener("resize", fitTabletModal);
+  detailMainImg.addEventListener("load", fitTabletModal);
+
+  window.addEventListener("pagehide", () => {
+    observer.disconnect();
+    tabletModal.style.removeProperty("height");
+  });
+
+  fitTabletModal();
 }
