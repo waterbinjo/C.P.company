@@ -32,6 +32,14 @@ const patternScene = document.querySelector("#labPatternScene");
 const patternInner = document.querySelector("#labPatternInner");
 const parts = document.querySelectorAll(".lab_part");
 
+/* 패턴 이미지 순서 지정 */
+const patternFocusParts = [
+  document.querySelector(".lab_part_camo"),
+  document.querySelector(".lab_part_quilting"),
+  document.querySelector(".lab_part_ergonomic"),
+  document.querySelector(".lab_part_herringbone"),
+];
+
 const notesBox = document.querySelector(".lab_pattern_notes");
 const patternLabel = document.querySelector(".lab_pattern_label");
 const patternNotes = document.querySelectorAll(".lab_pattern_note");
@@ -43,8 +51,11 @@ const completeCoat = document.querySelector("#labCompleteCoat");
 const completeCopy = document.querySelector("#labCompleteCopy");
 
 /* 03. 공통 함수 */
+
 const colors = ["#6D9465", "#436A9C", "#CE693B", "#963B46"];
+
 const clamp = (value) => Math.max(0, Math.min(1, value));
+
 const section = (value, start, end) => clamp((value - start) / (end - start));
 
 /* 04. 데스크톱 / 1024px 패턴 스크롤 잠금 */
@@ -113,6 +124,13 @@ function updateMobilePattern(progress) {
     note.classList.toggle("is-active", i === stage);
   });
 
+  /* 현재 설명에 해당하는 이미지 확대 */
+  patternFocusParts.forEach((part, i) => {
+    if (!part) return;
+
+    part.classList.toggle("is-active", i === stage && progress < 0.8);
+  });
+
   /* 진행 바 순차적으로 채우기 */
   patternBars.forEach((bar, i) => {
     bar.classList.toggle("is-active", i <= stage);
@@ -131,6 +149,13 @@ function resetMobilePattern() {
 
   patternBars.forEach((bar) => {
     bar.classList.remove("is-active");
+  });
+
+  /* 이미지 확대 상태 초기화 */
+  patternFocusParts.forEach((part) => {
+    if (!part) return;
+
+    part.classList.remove("is-active");
   });
 
   patternReady = false;

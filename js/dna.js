@@ -64,7 +64,58 @@
   const seamButtons = [...document.querySelectorAll(".dna_seams_point")];
   const seamBoxes = [...document.querySelectorAll(".dna_seams_box")];
 
+  /* 480px 모바일 전용 공통 설명 영역 */
+  const seamMobileView = window.matchMedia("(max-width: 480px)");
+  const seamMobileInfo = document.querySelector(".dna_seams_mobile_info");
+  const seamMobileTitle = document.querySelector(".dna_seams_mobile_title");
+  const seamMobileNum = document.querySelector(".dna_seams_mobile_num");
+  const seamMobileDesc = document.querySelector(".dna_seams_mobile_desc");
+
+  let seamActiveIndex = 0;
+  let seamAnimation = null;
+
+  /* 선택한 카드의 제목과 설명 변경 */
+  function updateSeamMobile(index, animate = false) {
+    if (
+      !seamMobileView.matches ||
+      !seamMobileInfo ||
+      !seamMobileTitle ||
+      !seamMobileNum ||
+      !seamMobileDesc
+    )
+      return;
+
+    const title = seamBoxes[index]?.querySelector(".dna_seams_detail_title");
+    const desc = seamBoxes[index]?.querySelector(".dna_seams_detail_desc");
+
+    if (!title || !desc) return;
+
+    seamMobileTitle.textContent = title.textContent.trim();
+
+    seamMobileNum.textContent = `${String(index + 1).padStart(2, "0")} / ${String(seamBoxes.length).padStart(2, "0")}`;
+
+    seamMobileDesc.replaceChildren(...Array.from(desc.childNodes, (node) => node.cloneNode(true)));
+
+    /* 설명 변경 시 페이드 효과 */
+    if (seamAnimation) seamAnimation.cancel();
+
+    if (
+      animate &&
+      !window.matchMedia("(prefers-reduced-motion: reduce)").matches &&
+      typeof seamMobileInfo.animate === "function"
+    ) {
+      seamAnimation = seamMobileInfo.animate([{ opacity: 0 }, { opacity: 1 }], {
+        duration: 250,
+        easing: "ease-out",
+      });
+    }
+  }
+
+  /* 선택 상태 변경 */
   function selectSeam(index) {
+    const changed = seamActiveIndex !== index;
+    seamActiveIndex = index;
+
     seamButtons.forEach((button, buttonIndex) => {
       const isActive = buttonIndex === index;
 
@@ -74,23 +125,68 @@
 
     seamBoxes.forEach((box, boxIndex) => {
       box.classList.toggle("dna_active", boxIndex === index);
+
+      if (seamMobileView.matches) {
+        box.setAttribute("aria-pressed", String(boxIndex === index));
+      }
     });
+
+    updateSeamMobile(index, changed);
   }
 
-  /* 재킷 위 버튼 클릭 */
+  /* 재킷 위 + 버튼 클릭 */
   seamButtons.forEach((button, index) => {
     button.addEventListener("click", () => selectSeam(index));
   });
 
-  /* 작은 화면에서 상세 카드 클릭 */
+  /* 상세 사진 카드 클릭 */
   seamBoxes.forEach((box, index) => {
     box.addEventListener("click", () => {
-      if (window.matchMedia("(max-width: 800px)").matches) selectSeam(index);
+      if (window.matchMedia("(max-width: 800px)").matches) {
+        selectSeam(index);
+      }
+    });
+
+    /* 모바일 카드 키보드 조작 */
+    box.addEventListener("keydown", (event) => {
+      if (!seamMobileView.matches || (event.key !== "Enter" && event.key !== " ")) return;
+
+      event.preventDefault();
+      selectSeam(index);
     });
   });
 
-  if (seamButtons.length && seamBoxes.length) selectSeam(0);
+  /* 화면 크기 변경 시 선택 상태 유지 */
+  function syncSeamMobile() {
+    seamBoxes.forEach((box, index) => {
+      if (seamMobileView.matches) {
+        box.setAttribute("role", "button");
+        box.setAttribute("tabindex", "0");
 
+        box.setAttribute(
+          "aria-label",
+          seamButtons[index]?.getAttribute("aria-label") || `디테일 ${index + 1} 보기`,
+        );
+
+        box.setAttribute("aria-pressed", String(index === seamActiveIndex));
+      } else {
+        box.removeAttribute("role");
+        box.removeAttribute("tabindex");
+        box.removeAttribute("aria-label");
+        box.removeAttribute("aria-pressed");
+      }
+    });
+
+    updateSeamMobile(seamActiveIndex);
+  }
+
+  /* 첫 번째 카드 활성화 */
+  if (seamButtons.length && seamBoxes.length) {
+    selectSeam(0);
+    syncSeamMobile();
+
+    seamMobileView.addEventListener("change", syncSeamMobile);
+  }
   /* 스크롤 등장 효과 */
   const revealTargets = document.querySelectorAll(
     [

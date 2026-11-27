@@ -1,5 +1,3 @@
-/* GSAP 시작 */
-
 document.addEventListener("DOMContentLoaded", () => {
   if (!window.gsap || !window.ScrollTrigger) {
     console.log("GSAP이 연결되지 않았습니다.");
@@ -8,8 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   gsap.registerPlugin(ScrollTrigger);
 
-  /* 영상 자동재생 */
-
+  // 영상 자동재생
   const video = document.querySelector(".hero_video video");
 
   if (video) {
@@ -19,8 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  /* 움직임 최소화 */
-
+  // 움직임 최소화
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     document
       .querySelectorAll(
@@ -28,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
       )
       .forEach((element) => element.classList.add("is-visible"));
 
-    document.querySelector(".timeline").classList.add("is-complete");
+    document.querySelector(".timeline")?.classList.add("is-complete");
     gsap.set(".timeline .line", { scaleY: 1 });
 
     return;
@@ -39,8 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const founder = document.querySelector(".founder");
   const timeline = document.querySelector(".timeline");
 
-  /* 영상과 가로 스크롤 */
-
+  // 영상과 가로 스크롤
   const introMedia = gsap.matchMedia();
 
   introMedia.add(
@@ -54,8 +49,16 @@ document.addEventListener("DOMContentLoaded", () => {
       const is768 = context.conditions.tablet && !isMobile;
       const hold = { value: 0 };
 
-      /* 첫 화면 초기 상태 */
+      // 화살표 요소
+      const videoArrow = intro.querySelector(".about_scroll_arrow--video");
+      const darkArrow = intro.querySelector(".about_scroll_arrow--dark");
+      const founderArrow = intro.querySelector(".about_scroll_arrow--founder");
 
+      // 화살표 초기 상태
+      gsap.set(videoArrow, { autoAlpha: 1 });
+      gsap.set([darkArrow, founderArrow], { autoAlpha: 0 });
+
+      // 첫 화면 초기 상태
       gsap.set(".hero_title", {
         autoAlpha: 0,
         y: 70,
@@ -79,29 +82,51 @@ document.addEventListener("DOMContentLoaded", () => {
           onUpdate: (self) => {
             if (self.progress >= 0.66) {
               founder.classList.add("is-visible");
+              gsap.set(founderArrow, { autoAlpha: 1 });
+            } else {
+              gsap.set(founderArrow, { autoAlpha: 0 });
             }
           },
         },
       });
 
-      /* 영상 화면 유지 */
-
+      // 영상 화면 유지
       introMotion.to(hold, {
         value: 1,
         duration: 0.3,
         ease: "none",
       });
 
-      /* 영상 어두워짐 */
-
+      // 영상 어두워짐
       introMotion.to(".dark", {
         opacity: 0.78,
         duration: 0.65,
         ease: "none",
       });
 
-      /* 큰 글씨 등장 */
+      // 첫 번째 화살표 숨기기
+      introMotion.to(
+        videoArrow,
+        {
+          autoAlpha: 0,
+          duration: 0.15,
+          ease: "none",
+        },
+        "<",
+      );
 
+      // 두 번째 화살표 표시
+      introMotion.to(
+        darkArrow,
+        {
+          autoAlpha: 1,
+          duration: 0.15,
+          ease: "none",
+        },
+        "<",
+      );
+
+      // 큰 글씨 등장
       introMotion.to(".hero_title", {
         autoAlpha: 1,
         y: 0,
@@ -109,8 +134,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ease: "power2.out",
       });
 
-      /* 작은 글씨 등장 */
-
+      // 작은 글씨 등장
       introMotion.to(".hero_desc", {
         autoAlpha: 1,
         y: 0,
@@ -118,34 +142,109 @@ document.addEventListener("DOMContentLoaded", () => {
         ease: "power2.out",
       });
 
-      /* 텍스트 화면 유지 */
-
+      // 텍스트 화면 유지
       introMotion.to(hold, {
         value: 2,
         duration: 0.65,
         ease: "none",
       });
 
-      /* 가로 스크롤 */
+      // 어두워진 영상 화면 위치
+      introMotion.addLabel("dark");
 
+      // 가로 스크롤
       introMotion.to(panels, {
         xPercent: -50,
         duration: 1.45,
         ease: "none",
       });
 
-      /* 창립자 화면 유지 */
+      // 가로 스크롤 시작과 함께 두 번째 화살표 숨기기
+      introMotion.to(
+        darkArrow,
+        {
+          autoAlpha: 0,
+          duration: 0.15,
+          ease: "none",
+        },
+        "<",
+      );
 
+      // 창립자 화면 위치
+      introMotion.addLabel("founder");
+
+      // 창립자 화면 유지
       introMotion.to(hold, {
         value: 3,
         duration: isMobile || is768 ? 1.2 : 0.5,
         ease: "none",
       });
+
+      // 특정 타임라인 위치로 이동
+      const moveToLabel = (label) => {
+        const trigger = introMotion.scrollTrigger;
+        const labelTime = introMotion.labels[label];
+
+        const progress = labelTime / introMotion.duration();
+
+        const target = trigger.start + (trigger.end - trigger.start) * progress;
+
+        window.scrollTo({
+          top: target,
+          behavior: "smooth",
+        });
+      };
+
+      // 첫 번째 화살표 클릭
+      const goToDark = () => {
+        moveToLabel("dark");
+      };
+
+      // 두 번째 화살표 클릭
+      const goToFounder = () => {
+        moveToLabel("founder");
+      };
+
+      // 창립자 화살표 클릭
+      // 다음에 표시되는 섹션으로 세로 스크롤
+      const goToNextSection = () => {
+        const nextSections = [
+          document.querySelector(".founder_quote"),
+          document.querySelector("#philosophy"),
+        ];
+
+        // display: none인 섹션은 건너뛰기
+        const nextSection = nextSections.find((section) => {
+          return section && window.getComputedStyle(section).display !== "none";
+        });
+
+        if (!nextSection) return;
+
+        const targetPosition = nextSection.getBoundingClientRect().top + window.scrollY;
+
+        window.scrollTo({
+          top: targetPosition,
+          behavior: "smooth",
+        });
+      };
+
+      // 화살표 클릭 이벤트 연결
+      videoArrow.addEventListener("click", goToDark);
+      darkArrow.addEventListener("click", goToFounder);
+      founderArrow.addEventListener("click", goToNextSection);
+
+      // GSAP matchMedia 정리
+      return () => {
+        videoArrow.removeEventListener("click", goToDark);
+        darkArrow.removeEventListener("click", goToFounder);
+        founderArrow.removeEventListener("click", goToNextSection);
+
+        founder.classList.remove("is-visible");
+      };
     },
   );
 
-  /* 디자인 철학 */
-
+  // 디자인 철학 제목
   ScrollTrigger.create({
     trigger: ".philosophy_title",
     start: "top 85%",
@@ -156,6 +255,7 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   });
 
+  // 디자인 철학 목록
   ScrollTrigger.create({
     trigger: ".philosophy_list",
     start: "top 80%",
@@ -166,8 +266,7 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   });
 
-  /* HISTORY 제목 */
-
+  // 히스토리 제목
   ScrollTrigger.create({
     trigger: "#history",
     start: "top 80%",
@@ -178,8 +277,7 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   });
 
-  /* HISTORY 중앙선 */
-
+  // 히스토리 중앙선
   let maxLineProgress = 0;
 
   ScrollTrigger.create({
@@ -199,8 +297,7 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   });
 
-  /* 연혁 등장 */
-
+  // 연혁 등장
   const histories = gsap.utils.toArray(".history_item");
 
   histories.forEach((item) => {
@@ -215,8 +312,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  /* 타임라인 화살표 */
-
+  // 타임라인 화살표
   ScrollTrigger.create({
     trigger: ".timeline",
     start: "bottom 72%",
@@ -227,8 +323,7 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   });
 
-  /* 마지막 문구 */
-
+  // 마지막 문구
   const ending = document.querySelector("#ending");
 
   ScrollTrigger.create({
@@ -241,8 +336,7 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   });
 
-  /* 화면 크기 재계산 */
-
+  // 화면 크기 재계산
   window.addEventListener("load", () => {
     ScrollTrigger.refresh();
   });
